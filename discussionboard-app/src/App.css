@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.discussion-wrapper{
+    margin:40px auto 40px auto;
+    width: 400px;
+    min-height: 600px;
+    border: 5px solid rgba(73, 204, 249, 1.0);
+    padding: 20px;
+}
+
+.video-wrapper{
+    margin-right:800px;
+    width: 700px;
+    min-height: 600px;
+    border: 5px solid rgba(73, 204, 249, 1.0);
+    padding: 20px;
+}
