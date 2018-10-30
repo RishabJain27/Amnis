@@ -1,5 +1,6 @@
 import React from 'react';
 
+const $ = window.$;
 export default class TodoInput extends React.Component{
     constructor(props){
         super(props)
@@ -17,8 +18,14 @@ export default class TodoInput extends React.Component{
 
     addTodo(todo){
         if(todo.length >0){
+
            this.props.addTodo(todo);
            this.setState({value: ''});
+
+           $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
+           data: JSON.stringify( { "content" : todo, "score" : 5 } ),
+           type: "POST",
+           contentType: "application/json" } );
         }
     	//console.log("TODO: ", todo);
     }
