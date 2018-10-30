@@ -23,7 +23,7 @@ export default class TodoInput extends React.Component{
            this.setState({value: ''});
 
            $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
-           data: JSON.stringify( { "content" : todo, "score" : 5 } ),
+           data: JSON.stringify( { "content" : todo, "score" : 100 } ),
            type: "POST",
            contentType: "application/json" } );
         }

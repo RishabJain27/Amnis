@@ -47,6 +47,11 @@ class App extends Component {
     
     removeTodo(id){
         console.log("removing: ", id);
+        
+        $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
+           data: JSON.stringify( { "content" : "*upvoting*", "score" : 1 } ),
+           type: "POST",
+           contentType: "application/json" } );
     }
     
   render() {

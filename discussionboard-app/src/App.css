@@ -17,83 +17,8 @@
 .discussion-wrapper{
 	margin-left: 20px;
 	margin-top: 5px;
-    min-height: 600px;
+    min-height: 550px;
     text-align: left;
     border: 5px solid rgba(73, 204, 249, 1.0);
     padding: 20px;
-}
-
-$size : 10rem;
-$border-width : .5rem;
-$radius : 1rem; /* try 50% */
-$transition : .3s;
-
-$bg : #F6F3E4;
-$green : #4BC35F;
-
-.circle {
-  .up { border-radius: $size $size $size $size; }
-  .count { border-radius: 50%; }
-}
-
-.vote {
-  display: flex;
-  flex-direction: column;
-  font-family: "Noto Sans";
-  position: relative;
-  width: $size;
-  height: $size;
-  margin: 1rem;
-}
-
-.increment {
-  flex: 1 0 0;
-  text-align: center;
-  opacity: .5;
-  transition: $transition;
-  cursor: pointer;
-  
-  &.up {
-    background: $green;
-    height: 50%;
-    margin-bottom: $border-width/2;
-  }
-  
-  &:hover {
-    opacity: 1;    
-  }
-}
-
-.count {
-  position: absolute;
-  top: 0;
-  border-radius: $radius*.1;
-  margin: $size*.25;
-  background: $bg;
-  width: $size*.5;
-  font-size: $size*.25;
-  font-weight: bold;
-  line-height: $size*.5;
-  text-align: center;
-  box-shadow: 0 0 0 $border-width $bg;
-  pointer-events: none;
-  
-  &.upvoted { color: $green; }
-}
-
-.bump {
-  animation: bump 200ms;
-}
-
-@keyframes bump {
-  30% { transform: scale(1.2); }
-}
-
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body { 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $bg;
 }

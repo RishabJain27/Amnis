@@ -13,7 +13,7 @@ export default class Example extends React.Component {
  
     return (
       <YouTube
-        videoId="2g811Eo7K8U"
+        videoId="YMu_NFrzCuE"
         opts={opts}
         onReady={this._onReady}
       />
