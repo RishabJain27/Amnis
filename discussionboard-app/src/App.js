@@ -27,51 +27,84 @@ class App extends Component {
         this.addTodo = this.addTodo.bind(this);
         this.removeTodo= this.removeTodo.bind(this);
     }
-    
+
+    /*function questionDB(){
+         var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var response = xmlHttp.responseText;
+        var jsonResp = JSON.parse(response);
+
+        for(var i=0; i<jsonResp.length;i++){
+            console.log(jsonResp[i].content);
+        }
+
+    }*/
+
     addTodo(todoText){
         //console.log("Todo added; ", todoText);
-            var cars = $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
-            type: "GET",
-            contentType: "application/json" } );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var response = xmlHttp.responseText;
+        var jsonResp = JSON.parse(response);
 
-            console.log(cars);
+        for(var i=0; i<jsonResp.length;i++){
+            console.log(jsonResp[i].content);
+            let todos = this.state.todos;
+            todos.push({id:this.state.nextId, text: jsonResp[i].content});
+            this.setState({
+                todos: todos,
+                nextId: ++this.state.nextId
+            });
+        }
 
-
-        let todos = this.state.todos.slice();
-        todos.push({id:this.state.nextId, text: todoText});
-        this.setState({
-            todos: todos,
-            nextId: ++this.state.nextId
-        });
     }
     
     removeTodo(id){
         console.log("removing: ", id);
-        
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var response = xmlHttp.responseText;
+        var jsonResp = JSON.parse(response);
+
+        for(var i=0; i<jsonResp.length;i++){
+            //var questionIDstring = JSON.stringify(jsonResp[i]._id);
+            //var updatedQuestionIDstring = questionIDstring.slice(9,33);
+            //console.log(updatedQuestionIDstring);
+            $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
+                data: JSON.stringify( {"content": "nimosto", "score" : 69 } ),
+                type: "PUT",
+                contentType: "application/json" } );
+        }
+
+        /*
         $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
-           data: JSON.stringify( { "content" : "*upvoting*", "score" : 1 } ),
-           type: "POST",
-           contentType: "application/json" } );
+           data: JSON.stringify( {"content": "test", "score" : 69 } ),
+           type: "PUT",
+           contentType: "application/json" } );*/
     }
     
   render() {
     return (
       <div className="App">
-			<div className="video-wrapper">
-				<Example />
-			</div>
-			<div className="discussion-wrapper">
-				<Header />
-				<TodoInput todoText="" addTodo={this.addTodo}/>
-				<ul>
-					{
-						this.state.todos.map((todo) => {
-						return <TodoItem todo={todo} key={todo.id} id={todo.id} removeTodo={this.removeTodo}/>
-						})
+            <div className="video-wrapper">
+                <Example />
+            </div>
+            <div className="discussion-wrapper">
+                <Header />
+                <TodoInput todoText="" addTodo={this.addTodo}/>
+                <ul>
+                    {
+                        this.state.todos.map((todo) => {
+                        return <TodoItem todo={todo} key={todo.id} id={todo.id} removeTodo={this.removeTodo}/>
+                        })
 
-					}
-				</ul>
-			</div>
+                    }
+                </ul>
+            </div>
       </div>
     );
   }
