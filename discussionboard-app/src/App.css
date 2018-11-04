@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
+
+.App {
+	display: flex;
+  text-align: center;
+}
+
+.video-wrapper{
+    margin-left: 5px;
+    margin-top: 5px;
+    min-height: 600px;
+   
+    /*border: 5px solid rgba(73, 204, 249, 1.0);*/
+    /*padding: 20px;*/
+}
+
+.discussion-wrapper{
+	margin-left: 20px;
+	margin-top: 5px;
+    min-height: 550px;
+    text-align: left;
+    border: 5px solid rgba(73, 204, 249, 1.0);
+    padding: 20px;
+}
