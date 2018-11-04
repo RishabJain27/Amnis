@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const questions = require('./routes/api/questions');
+const users = require('./routes/api/users');
 
 const app = express();
 
@@ -14,10 +15,13 @@ const db = require('./config/keys').mongoURI; // Go to folder config/keys to fin
 mongoose
 	.connect(db, {useNewUrlParser:true})
 	.then(() => console.log('MongoDB Connected'))
-	.catch(err => console.log(err));
+	.catch(err => console.log(err))
+	
+mongoose.set('useCreateIndex', true);
 
 //User Routes
 app.use('/api/questions', questions);
+app.use('/api/users', users);
 
 const port = process.env.PORT || 5000; // for use with heroku
 
