@@ -74,10 +74,19 @@ class App extends Component {
             //var questionIDstring = JSON.stringify(jsonResp[i]._id);
             //var updatedQuestionIDstring = questionIDstring.slice(9,33);
             //console.log(updatedQuestionIDstring);
+            var putTodo = jsonResp[i].content;//added
+            //console.log(putTodo);//added
             $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
-                data: JSON.stringify( {"content": "nimosto", "score" : 69 } ),
+                data: JSON.stringify( {"content": putTodo, "score" : 400000 } ),//changed the content string
+                //data: JSON.stringify( { "$set" : { "nkmodihasabigchodi" : 5 } } ),
                 type: "PUT",
                 contentType: "application/json" } );
+            /*$.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
+                type: "DELETE",
+                async: true,
+                timeout: 300000,
+                success: function (data) { },
+                error: function (xhr, status, err) { } } );*/
         }
 
         /*
