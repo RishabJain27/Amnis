@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const questions = require('./routes/api/questions');
-const users = require('./routes/api/users');
+const users = require('./routes/api/users'); // Get the schemas
 
 const app = express();
 

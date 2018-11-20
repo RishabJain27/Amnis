@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 		content: req.body.content
 	});
 	
-	newQuestion.save().then(question => res.json(question));
+	newQuestion.save().then(question => res.json(question)); // save to database
 });
 
 // @route DELETE api/questions/:id
@@ -29,8 +29,8 @@ router.post('/', (req, res) => {
 // @access Public
 router.delete('/:id', (req, res) => {
 	Question.findByID(req.params.id)
-		.then(question => question.remove().then(()=>res.json({success: true})))
-		.catch(err => res.status(404).json({success:false}));
+		.then(question => question.remove().then(()=>res.json({success: true}))) // then() used with promises
+		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
 });
 
 module.exports = router;
