@@ -27,22 +27,38 @@ class App extends Component {
         this.addTodo = this.addTodo.bind(this);
         this.removeTodo= this.removeTodo.bind(this);
     }
-    
+
+    /*function questionDB(){
+         var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var response = xmlHttp.responseText;
+        var jsonResp = JSON.parse(response);
+
+        for(var i=0; i<jsonResp.length;i++){
+            console.log(jsonResp[i].content);
+        }
+
+    }*/
+
     addTodo(todoText){
         //console.log("Todo added; ", todoText);
-            var cars = $.ajax( { url: "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF",
-            type: "GET",
-            contentType: "application/json" } );
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", "https://api.mlab.com/api/1/databases/amnis_115/collections/questions?apiKey=VDpOsnOX-5duzNEouBEEei-or-cK4deF", false ); // false for synchronous request
+        xmlHttp.send( null );
+        var response = xmlHttp.responseText;
+        var jsonResp = JSON.parse(response);
 
-            console.log(cars);
+        for(var i=0; i<jsonResp.length;i++){
+            console.log(jsonResp[i].content);
+            let todos = this.state.todos;
+            todos.push({id:this.state.nextId, text: jsonResp[i].content});
+            this.setState({
+                todos: todos,
+                nextId: ++this.state.nextId
+            });
+        }
 
-
-        let todos = this.state.todos.slice();
-        todos.push({id:this.state.nextId, text: todoText});
-        this.setState({
-            todos: todos,
-            nextId: ++this.state.nextId
-        });
     }
     
     removeTodo(id){
