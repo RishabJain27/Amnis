@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
-import { CSSTransition, TransitionGroup} from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
 import { getQuestions, deleteQuestion } from '../actions/questionActions';
 import PropTypes from 'prop-types';
 
 class QuestionList extends Component {
-   componentDidMount() {
-        this.props.getQuestions();
-   }
+    //uncomment below to integrate 'real-time' question updates
 
-   onDeleteClick = (id) => {
+    componentDidMount() {
+        this.props.getQuestions();
+        /*var intervalID = setInterval(()=> {this.props.getQuestions()}, 2000);
+        this.setState({intervalID: intervalID});*/
+    }
+
+    componentWillUnmount() {
+        //clearInterval(this.state.intervalID);
+    }
+
+    onDeleteClick = (id) => {
         this.props.deleteQuestion(id);
-   }
+    }
 
     render() {
         const { questions } = this.props.question; 
