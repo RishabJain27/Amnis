@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const questions = require('./routes/api/questions');
 const users = require('./routes/api/users'); // Get the schemas
@@ -17,6 +18,8 @@ mongoose
 	.then(() => console.log('MongoDB Connected'))
 	.catch(err => console.log(err))
 	
+app.use(cors()); // Avoids errors with CORS requests between client and server
+
 mongoose.set('useCreateIndex', true);
 
 //User Routes

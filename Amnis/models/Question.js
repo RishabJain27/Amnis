@@ -12,7 +12,8 @@ const QuestionSchema = new Schema({
 		required: true
 	},
 	score: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	date: {
 		type: Date,

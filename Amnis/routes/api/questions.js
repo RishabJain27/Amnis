@@ -9,7 +9,7 @@ const Question = require('../../models/Question');
 // @access Public
 router.get('/', (req, res) => {
 	Question.find()
-		.sort({date: -1 })
+		.sort({score: -1, date: -1 })
 		.then(questions => res.json(questions))
 });
 
@@ -18,7 +18,8 @@ router.get('/', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
 	const newQuestion = new Question({
-		content: req.body.content
+		content: req.body.content,
+		score: req.body.score
 	});
 	
 	newQuestion.save().then(question => res.json(question)); // save to database
@@ -28,7 +29,7 @@ router.post('/', (req, res) => {
 // @desc Delete a question
 // @access Public
 router.delete('/:id', (req, res) => {
-	Question.findByID(req.params.id)
+	Question.findById(req.params.id)
 		.then(question => question.remove().then(()=>res.json({success: true}))) // then() used with promises
 		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
 });
