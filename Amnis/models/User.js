@@ -8,9 +8,14 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-	userID: {
-		type: Number,
-		unique: true
+	googleUserID: {
+		type: String,
+		unique: true,
+		required: true
+	},
+	isProfessor: {
+		type: Boolean,
+		default: false
 	},
 	dateJoined: {
 		type: Date,

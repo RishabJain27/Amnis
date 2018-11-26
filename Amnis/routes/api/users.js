@@ -9,8 +9,17 @@ const User = require('../../models/User');
 // @access Public
 router.get('/', (req, res) => {
 	User.find()
-		.sort({userID: -1})
+		.sort({name: -1})
 		.then(users => res.json(users))
+});
+
+// @route GET api/users
+// @desc Get specific user by ID
+// @access Public
+router.get('/:id', (req, res) => {
+	User.findOne({ googleUserID: req.params.id })
+		.then(user => res.json(user))
+		.catch(err => res.status(404).json({failure:true}));
 });
 
 // @route POST api/users
@@ -18,7 +27,8 @@ router.get('/', (req, res) => {
 // @access Public
 router.post('/', (req, res) => {
 	const newUser = new User({
-		content: req.body.name
+		name: req.body.name,
+		googleUserID: req.body.googleUserID
 	});
 	
 	newUser.save().then(user => res.json(user));

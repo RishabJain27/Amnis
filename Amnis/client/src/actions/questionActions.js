@@ -38,6 +38,6 @@ export const deleteQuestion = (id) => dispatch => {
 
 export const setQuestionsLoading = () => {
     return {
-        type:QUESTIONS_LOADING
+        type: QUESTIONS_LOADING
     };
 };
