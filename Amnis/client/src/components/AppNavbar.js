@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import { 
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    Container
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container } from 'reactstrap';
 
 class AppNavbar extends Component 
 {
@@ -31,12 +22,12 @@ class AppNavbar extends Component
             <div>
                 <Navbar color="success" dark expand="sm" className="mb-5">
                     <Container>
-                        <NavbarBrand href="/">Question List</NavbarBrand>
+                        <NavbarBrand href="/main">Amnis</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="https://google.com">Google Search</NavLink>
+                                    <NavLink href="/">Home</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>

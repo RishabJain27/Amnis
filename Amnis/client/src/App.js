@@ -7,6 +7,7 @@ import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 
+// Redux related imports: 
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -49,9 +50,7 @@ class App extends Component {
                 .then((res) => {
                   console.log(response.profileObj.name + " added!");
                 })
-                .catch((err) => {
-                  console.log(err);
-                });
+                .catch((err) => {console.log(err);});
             }
           }
         )
@@ -72,7 +71,7 @@ class App extends Component {
           <AppNavbar />
           <Container>
             {this.state.currentUser === null ? 
-              (<div>Not Logged in! <br/>
+              (<div>
                 <GoogleLogin
                   clientId="496303468611-kdoi6gtil8qb8f0o807c8f6b69bsiffa.apps.googleusercontent.com"
                   buttonText="Login"

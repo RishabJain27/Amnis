@@ -2,3 +2,4 @@ export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTIONS';
 export const QUESTIONS_LOADING = 'QUESTIONS_LOADING';
+export const GET_USER = 'GET_USER';
