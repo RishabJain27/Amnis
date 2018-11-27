@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING } from './types';
+import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION} from './types';
 
 export const getQuestions = () => dispatch => {
     dispatch(setQuestionsLoading());
@@ -30,6 +30,18 @@ export const deleteQuestion = (id) => dispatch => {
         .then(res =>
             dispatch({
                 type: DELETE_QUESTION,
+                //type: UPVOTE_QUESTION,
+                payload: id
+            })
+        );
+};
+
+export const upvoteQuestion = (id) => dispatch => {
+    axios
+        .put(`http://localhost:5000/api/questions/${id}`)
+        .then(res =>
+            dispatch({
+                type: UPVOTE_QUESTION,
                 payload: id
             })
         );

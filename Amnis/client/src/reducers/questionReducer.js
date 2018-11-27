@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING } from '../actions/types';
+import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION } from '../actions/types';
 
 const initialState = {
     questions: [],
@@ -28,6 +28,15 @@ export default function(state = initialState, action) {
                 ...state,
                 loading: true
             };
+        case UPVOTE_QUESTION:
+            var indexID = state.questions.findIndex(i => i._id === action.payload);
+            console.log(indexID);
+            var newQuestion = state.questions[indexID];
+            newQuestion.score++;
+            return {
+                ...state,
+                questions: [...state.questions.slice(0,indexID), newQuestion, ...state.questions.slice(indexID)]
+            }
         default:
             return state;
     }
