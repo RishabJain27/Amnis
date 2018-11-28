@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
-import { getQuestions, deleteQuestion } from '../actions/questionActions';
+import { getQuestions, deleteQuestion, upvoteQuestion } from '../actions/questionActions';
 import PropTypes from 'prop-types';
 
 class QuestionList extends Component {
@@ -22,6 +22,10 @@ class QuestionList extends Component {
         this.props.deleteQuestion(id);
     }
 
+    onUpvoteClick = (id) => {
+        this.props.upvoteQuestion(id);
+    }
+
     render() {
         const { questions } = this.props.question; 
         return(
@@ -37,6 +41,12 @@ class QuestionList extends Component {
                                         size="sm"
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                     >&times;</Button>
+                                     <Button
+                                        className="remove-btn"
+                                        color="primary"
+                                        size="sm"
+                                        onClick={this.onUpvoteClick.bind(this, _id)}
+                                    >Upvote</Button>
                                     {content} <span className="score">{score}</span>
                                 </ListGroupItem>
                             </CSSTransition>
@@ -60,4 +70,5 @@ const mapStateToProps = (state) => ({
 export default connect(
     mapStateToProps, 
     { getQuestions,
-      deleteQuestion })(QuestionList);
+      deleteQuestion, 
+      upvoteQuestion })(QuestionList);
