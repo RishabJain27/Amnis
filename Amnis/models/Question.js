@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false); // To avoid deprecation warnings
 const Schema = mongoose.Schema;
 
 // Create Question Schema
 const QuestionSchema = new Schema({
 	googleUserID: {
-		type: String,
-		unique: true
+		type: String
 	},
 	content: {
 		type: String,

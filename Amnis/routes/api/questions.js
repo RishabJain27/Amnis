@@ -21,8 +21,19 @@ router.post('/', (req, res) => {
 		content: req.body.content,
 		score: req.body.score
 	});
-	
+
 	newQuestion.save().then(question => res.json(question)); // save to database
+});
+
+// @route PUT api/questions
+// @desc Put/upvote a question
+// @access Public
+router.put('/:id', (req, res) => {
+	Question.findByIdAndUpdate(req.params.id,
+		{
+			$inc: { score: 1 }
+		}).then((question)=>res.json({question})) // then() used with promises
+		.catch(err => res.status(404).json({success:false}));
 });
 
 // @route DELETE api/questions/:id
