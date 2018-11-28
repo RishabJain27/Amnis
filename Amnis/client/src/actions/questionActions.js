@@ -30,13 +30,12 @@ export const deleteQuestion = (id) => dispatch => {
         .then(res =>
             dispatch({
                 type: DELETE_QUESTION,
-                //type: UPVOTE_QUESTION,
                 payload: id
             })
         );
 };
 
-export const upvoteQuestion = (id) => dispatch => {
+export const upvoteQuestion = (id, reload) => dispatch => {
     axios
         .put(`http://localhost:5000/api/questions/${id}`)
         .then(res =>
@@ -44,7 +43,11 @@ export const upvoteQuestion = (id) => dispatch => {
                 type: UPVOTE_QUESTION,
                 payload: id
             })
-        );
+        ).then(() => {
+            if(reload === true) {
+                dispatch(getQuestions());
+            }
+        });
 };
 
 

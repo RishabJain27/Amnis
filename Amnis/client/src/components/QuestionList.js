@@ -23,7 +23,7 @@ class QuestionList extends Component {
     }
 
     onUpvoteClick = (id) => {
-        this.props.upvoteQuestion(id);
+        this.props.upvoteQuestion(id, true); // second variable is true when get request is desired to be resent after upvote
     }
 
     render() {
