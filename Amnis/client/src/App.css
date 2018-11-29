@@ -1,3 +1,5 @@
+
+
 .remove-btn {
   margin-right: 0.5rem;
 }
@@ -26,6 +28,7 @@
 }
 
 .App {
+  display: flex;
   text-align: center;
 }
 
@@ -56,4 +59,85 @@
   to {
     transform: rotate(360deg);
   }
+}
+.video-wrapper{
+    margin-left: -80px;
+    margin-top: 5px;
+    min-height: 600px;
+    /*border: 5px solid rgba(73, 204, 249, 1.0);*/
+    /*padding: 20px;*/
+}
+
+.discussion-wrapper{
+	margin-left: 10px;
+	margin-top: 5px;
+    min-height: 550px;
+    min-width: 510px;
+    text-align: left;
+    border: 5px solid rgba(73, 204, 249, 1.0);
+    padding: 20px;
+}
+button {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: blue;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+  background: darkblue;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+
+button2 {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: green;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+button2:hover, 
+button2:focus {
+  background:darkgreen;
+}
+
+button2:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button2:active {
+  transform: scale(0.99);
 }
