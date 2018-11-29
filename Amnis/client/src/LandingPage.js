@@ -3,11 +3,25 @@ import AppNavbar from './components/AppNavbar';
 import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import axios from 'axios';
+import { Button } from 'reactstrap';
+
+
+
+
 
 class LandingPage extends Component {
+
+    
+
     constructor(props) 
     {
         super(props);
+        document.body.style.backgroundImage = 'url(RedMist.jpg)';
+        document.body.style.webkitTextFillColor = 'white';
+        //document.body.style.fontSize = '50px';
+        document.head.style.fontSize = '100px';
+        document.body.style.backgroundSize = 'cover';
+
         this.state = {currentUser : null };
         this.responseGoogle = this.responseGoogle.bind(this);
         this.logoutGoogle = this.logoutGoogle.bind(this);
@@ -55,16 +69,29 @@ class LandingPage extends Component {
     }
 
     render() {
+        
         return(
             <div>
                 <AppNavbar />
                 <center>
-                    <h1>Hello World! This is Amnis Project</h1>
+               
+                    <h1>Welcome to Amnis</h1>
+
                     {this.state.currentUser === null ? 
                         (<div>
                             <GoogleLogin
                             clientId="496303468611-kdoi6gtil8qb8f0o807c8f6b69bsiffa.apps.googleusercontent.com"
-                            buttonText="Login"
+                            buttonText="Login with Google"
+                            render={renderProps => (
+                                <div>
+                                
+                                <button onClick={renderProps.onClick}>Student Log in with Google</button>   
+                                
+                                <button2 onClick={renderProps.onClick}>Professor Log in with Google</button2>                       
+                                  
+                                 </div>
+
+                              )}
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
                             />
@@ -75,8 +102,17 @@ class LandingPage extends Component {
                                         ></GoogleLogout>
                                     </div>)
                     }
+                                        <h1>Created by:</h1>
+                                        <div>
+                                        <h1>Nish, Adit, Shridhik, Rishab, Tejas, Vishal</h1>
+   
+                                    </div>                                       
+
                 </center>
+                
             </div>
+
+
         );
     }
 }
