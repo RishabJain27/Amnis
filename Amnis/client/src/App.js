@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import './App.css';
 import AppNavbar from './components/AppNavbar';
 import QuestionList from './components/QuestionList';
 import ItemModal from './components/ItemModal';
 import { Container } from 'reactstrap';
 import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
+import YoutubeVideo from './components/youtubevideo';
 import axios from 'axios';
 
 // Redux related imports: 
@@ -86,7 +88,10 @@ class App extends Component {
                         </div>)
             }
             <ItemModal />
-            <QuestionList />
+            <div className="App">
+            <YoutubeVideo /></div>
+            <div className="discussion-wrapper"><QuestionList /></div>
+            </div>
           </Container>
           
         </div>
