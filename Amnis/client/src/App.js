@@ -89,8 +89,8 @@ class App extends Component {
             }
             <ItemModal />
             <div className="App">
-            <YoutubeVideo /></div>
-            <div className="discussion-wrapper"><QuestionList /></div>
+              <div className="video-wrapper"><YoutubeVideo /></div>
+              <div className="discussion-wrapper"><QuestionList /></div>
             </div>
           </Container>
           

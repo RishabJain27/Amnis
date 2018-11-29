@@ -3,15 +3,9 @@ import AppNavbar from './components/AppNavbar';
 import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import axios from 'axios';
-import { Button } from 'reactstrap';
-
-
-
-
+//import { Button } from 'reactstrap';
 
 class LandingPage extends Component {
-
-    
 
     constructor(props) 
     {
