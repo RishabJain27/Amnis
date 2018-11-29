@@ -1,0 +1,27 @@
+{
+  "name": "amnis",
+  "version": "1.0.0",
+  "description": "Amnis streaming project fo CS115!",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Adit Bhagat",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "jest-runtime": "^23.6.0",
+    "mongoose": "^5.3.13",
+    "react": "^16.6.3",
+    "react-youtube": "^7.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
