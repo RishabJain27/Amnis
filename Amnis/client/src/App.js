@@ -5,7 +5,8 @@ import QuestionList from './components/QuestionList';
 import ItemModal from './components/ItemModal';
 import { Container } from 'reactstrap';
 import { GoogleLogin } from 'react-google-login';
-import { GoogleLogout } from 'react-google-login';
+//import { GoogleLogout } from 'react-google-login';
+import { Button } from 'reactstrap';
 import YoutubeVideo from './components/youtubevideo';
 import axios from 'axios';
 
@@ -18,23 +19,27 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
 class App extends Component {
-  constructor(props) 
-  {
-    super(props);
-    document.body.style.backgroundColor = 'black';
-    //document.body.style.webkitTextFillColor = 'white';
-    this.state = {currentUser : null };
-    this.responseGoogle = this.responseGoogle.bind(this);
-    this.logoutGoogle = this.logoutGoogle.bind(this);
-  }
-  
+
+    constructor(props) {
+        super(props);
+        document.body.style.backgroundColor = 'black';
+        //document.body.style.webkitTextFillColor = 'white';
+        this.state = { currentUser: JSON.parse(localStorage.getItem('currentUser')) };
+
+        this.isUserLoggedIn = this.isUserLoggedIn.bind(this);
+        this.responseGoogle = this.responseGoogle.bind(this);
+        this.logoutGoogle = this.logoutGoogle.bind(this);
+    }
+
+    isUserLoggedIn = () => {
+        return (this.state.currentUser !== null);
+    }
+
   responseGoogle = (response) => {
     console.log(response);
     if(response.profileObj) 
     {
       console.log(response.googleId);
-      //console.log(response.isSignedIn());
-      //console.log(response.getBasicProfile());
       axios
         .get(`http://localhost:5000/api/users/${response.googleId}`) // ` used to insert ID in url
         .then(
@@ -57,15 +62,17 @@ class App extends Component {
                 })
                 .catch((err) => {console.log(err);});
             }
+            localStorage.setItem('currentUser', JSON.stringify(response.profileObj.name));
           }
         )
         .catch((err)=> {console.log(err);});
-      this.setState({currentUser : response});
+      this.setState({currentUser : response.profileObj.name});
     }
   }
   
   logoutGoogle = () => {
-    console.log("Logged out");
+    console.log("Logged out " + this.state.currentUser);
+    localStorage.clear();
     this.setState({currentUser : null});
   }
   
@@ -75,7 +82,7 @@ class App extends Component {
         <div>
           <AppNavbar />
           <Container>
-            {this.state.currentUser === null ? 
+            {(!this.isUserLoggedIn()) ? 
               (<div>
                 <GoogleLogin
                   clientId="496303468611-kdoi6gtil8qb8f0o807c8f6b69bsiffa.apps.googleusercontent.com"
@@ -83,11 +90,8 @@ class App extends Component {
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
                 />
-              </div>) : (<div>Hello {this.state.currentUser.profileObj.name}! <br/>
-                            <GoogleLogout
-                              buttonText="Logout"
-                              onLogoutSuccess={this.logoutGoogle}
-                            ></GoogleLogout>
+              </div>) : (<div>Hello {this.state.currentUser}! <br/>
+                            <Button color="info" onClick={this.logoutGoogle}>Logout</Button>
                         </div>)
             }
             <ItemModal />
@@ -96,7 +100,6 @@ class App extends Component {
               <div className="discussion-wrapper"><QuestionList /></div>
             </div>
           </Container>
-          
         </div>
       </Provider>
     );

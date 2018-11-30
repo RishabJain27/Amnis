@@ -16,7 +16,7 @@ class LandingPage extends Component {
         document.head.style.fontSize = "100px";
         document.body.style.backgroundSize = "cover";
 
-        this.state = { currentUser: null };
+        this.state = { currentUser: null, studentClicked: true };
         this.responseGoogle = this.responseGoogle.bind(this);
         this.logoutGoogle = this.logoutGoogle.bind(this);
     }
@@ -72,9 +72,9 @@ class LandingPage extends Component {
                                 buttonText="Login with Google"
                                 render={renderProps => (
                                     <div>
-                                        <button onClick={renderProps.onClick}>Student Log in with Google</button>
+                                        <button onClick={renderProps.onClick}>Student Login with Google</button>
                                         <br />
-                                        <button className="button2" onClick={renderProps.onClick}>Professor Log in with Google</button>
+                                        <button className="button2" onClick={renderProps.onClick}>Professor Login with Google</button>
                                     </div>
                                 )}
                                 onSuccess={this.responseGoogle}
