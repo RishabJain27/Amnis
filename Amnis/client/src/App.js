@@ -90,7 +90,7 @@ class App extends Component {
                   onSuccess={this.responseGoogle}
                   onFailure={this.responseGoogle}
                 />
-              </div>) : (<div>Hello {this.state.currentUser}! <br/>
+              </div>) : (<div className="whiteText">Hello {this.state.currentUser}! <br/>
                             <Button color="info" onClick={this.logoutGoogle}>Logout</Button>
                         </div>)
             }

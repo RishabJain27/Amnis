@@ -141,3 +141,13 @@ button:active {
 .button2:active {
   transform: scale(0.99);
 }
+
+.red_nav_text {
+    color:rgb(240, 101, 101);
+    text-shadow: 1px 1px black;
+    display: inline;
+}
+
+.whiteText {
+    color:white;
+}

@@ -4,7 +4,7 @@ import { GoogleLogin } from "react-google-login";
 import { GoogleLogout } from "react-google-login";
 import axios from "axios";
 import './App.css';
-import logo from "./components/Logo.png";
+import logo from "./images/Logo.png";
 
 class LandingPage extends Component {
 
