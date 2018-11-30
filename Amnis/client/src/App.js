@@ -8,6 +8,8 @@ import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import YoutubeVideo from './components/youtubevideo';
 import axios from 'axios';
+import logo from './components/Logo.png';
+
 
 // Redux related imports: 
 import { Provider } from 'react-redux';
@@ -20,6 +22,8 @@ class App extends Component {
   constructor(props) 
   {
     super(props);
+    document.body.style.backgroundColor = 'black';
+    //document.body.style.webkitTextFillColor = 'white';
     this.state = {currentUser : null };
     this.responseGoogle = this.responseGoogle.bind(this);
     this.logoutGoogle = this.logoutGoogle.bind(this);

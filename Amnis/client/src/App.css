@@ -45,11 +45,11 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: grey;
 }
 
 .App-link {
-  color: #61dafb;
+  color: rgba(235, 84, 72, 1);
 }
 
 @keyframes App-logo-spin {
@@ -74,7 +74,7 @@
     min-height: 550px;
     min-width: 510px;
     text-align: left;
-    border: 5px solid rgba(73, 204, 249, 1.0);
+    border: 5px solid rgba(235, 84, 72, 1);
     padding: 20px;
 }
 button {
@@ -83,7 +83,7 @@ button {
   padding: 1rem 2rem;
   margin: 0;
   text-decoration: none;
-  background: blue;
+  background: rgba(108, 117, 125, 1);
   color: #ffffff;
   font-family: sans-serif;
   font-size: 1rem;
@@ -97,7 +97,7 @@ button {
 
 button:hover,
 button:focus {
-  background: darkblue;
+  background: rgba(108, 117, 125, .685);
 }
 
 button:focus {
@@ -113,10 +113,10 @@ button:active {
 button2 {
   display: inline-block;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem 1.695rem;
   margin: 0;
   text-decoration: none;
-  background: green;
+  background: rgba(235, 84, 72, 1);
   color: #ffffff;
   font-family: sans-serif;
   font-size: 1rem;
@@ -130,7 +130,7 @@ button2 {
 
 button2:hover, 
 button2:focus {
-  background:darkgreen;
+  background:rgba(235, 84, 72, .685);
 }
 
 button2:focus {
