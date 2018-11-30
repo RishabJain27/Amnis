@@ -112,8 +112,8 @@ button:active {
 
 .button2 {
   display: inline-block;
-  border: none;
-  padding: 1rem 1.695rem;
+  /*border: none;*/
+  padding: 1rem 1.6rem;
   margin: 0;
   text-decoration: none;
   background: rgba(235, 84, 72, 1);
