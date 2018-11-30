@@ -8,7 +8,6 @@ import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import YoutubeVideo from './components/youtubevideo';
 import axios from 'axios';
-import logo from './components/Logo.png';
 
 
 // Redux related imports: 

@@ -110,7 +110,7 @@ button:active {
 }
 
 
-button2 {
+.button2 {
   display: inline-block;
   border: none;
   padding: 1rem 1.695rem;
@@ -128,16 +128,16 @@ button2 {
   -moz-appearance: none;
 }
 
-button2:hover, 
-button2:focus {
+.button2:hover, 
+.button2:focus {
   background:rgba(235, 84, 72, .685);
 }
 
-button2:focus {
+.button2:focus {
   outline: 1px solid #fff;
   outline-offset: -4px;
 }
 
-button2:active {
+.button2:active {
   transform: scale(0.99);
 }
