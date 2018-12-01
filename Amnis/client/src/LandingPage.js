@@ -60,7 +60,7 @@ class LandingPage extends Component {
     render() {
         return (
             <div>
-                <AppNavbar />
+                <AppNavbar buttonVisible={false}/>
                 <center>
                     <div className="logo"><img src={logo} alt="Amnis Logo" width="200" height="200" /></div>
                     <h1>Welcome to Amnis</h1>
@@ -72,9 +72,9 @@ class LandingPage extends Component {
                                 buttonText="Login with Google"
                                 render={renderProps => (
                                     <div>
-                                        <button onClick={renderProps.onClick}>Student Login with Google</button>
+                                        <button onClick={renderProps.onClick}>Student Signup/Login with Google</button>
                                         <br />
-                                        <button className="button2" onClick={renderProps.onClick}>Professor Login with Google</button>
+                                        <button className="button2" onClick={renderProps.onClick}>Professor Signup/Login with Google</button>
                                     </div>
                                 )}
                                 onSuccess={this.responseGoogle}
@@ -90,9 +90,9 @@ class LandingPage extends Component {
                                 />
                             </div>
                         )}
-                    <h1>Created by:</h1>
+                    <h2>Created by:</h2>
                     <div>
-                        <h1>Nishith, Adit, Shridhik, Rishab, Tejas, and Vishal</h1>
+                        <h2>Nishith, Adit, Shridhik, Rishab, Tejas, and Vishal</h2>
                     </div>
                 </center>
             </div>

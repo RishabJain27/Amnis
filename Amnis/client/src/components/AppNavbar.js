@@ -8,7 +8,8 @@ class AppNavbar extends Component
     {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            buttonVisible: !!this.props.buttonVisible
         }
     }
 
@@ -19,21 +20,26 @@ class AppNavbar extends Component
     }
 
     render() {
+        let navButton = null;
+        if(this.state.buttonVisible) {
+            navButton = <Button outline color="info">Help</Button>
+        }
+
         return(
             <div>
                 <Navbar color="secondary" dark expand="sm" className="mb-7">
                     <Container>
-                        <NavbarBrand href="/main">
-                            <img src={logo} alt="Amnis Logo" width="60" height="50" />
-                            <h3 className="red_nav_text"> Amnis</h3></NavbarBrand>
+                        <NavbarBrand href="/">
+                            <img src={logo} alt="Amnis Logo" width="70" height="60" />
+                            <h1 className="red_nav_text"> Amnis</h1></NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/">Home</NavLink>
+                                    <NavLink href="/main">View Lectures</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <Button>Help</Button>
+                                    {navButton}
                                 </NavItem>
                             </Nav>
                         </Collapse>

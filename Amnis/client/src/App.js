@@ -80,7 +80,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <AppNavbar />
+          <AppNavbar buttonVisible={true}/>
           <Container>
             {(!this.isUserLoggedIn()) ? 
               (<div>

@@ -146,6 +146,7 @@ button:active {
     color:rgb(240, 101, 101);
     text-shadow: 1px 1px black;
     display: inline;
+    vertical-align: middle;
 }
 
 .whiteText {
