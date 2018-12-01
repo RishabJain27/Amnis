@@ -11,7 +11,7 @@ class LandingPage extends Component {
     constructor(props) {
         super(props);
         document.body.style.backgroundColor = "black";
-        document.body.style.webkitTextFillColor = "white";
+        //document.body.style.webkitTextFillColor = "white";
         //document.body.style.fontSize = '50px';
         document.head.style.fontSize = "100px";
         document.body.style.backgroundSize = "cover";
@@ -63,7 +63,7 @@ class LandingPage extends Component {
                 <AppNavbar buttonVisible={false}/>
                 <center>
                     <div className="logo"><img src={logo} alt="Amnis Logo" width="200" height="200" /></div>
-                    <h1>Welcome to Amnis</h1>
+                    <h1 className="whiteText">Welcome to Amnis</h1>
 
                     {this.state.currentUser === null ? (
                         <div>
@@ -90,10 +90,7 @@ class LandingPage extends Component {
                                 />
                             </div>
                         )}
-                    <h2>Created by:</h2>
-                    <div>
-                        <h2>Nishith, Adit, Shridhik, Rishab, Tejas, and Vishal</h2>
-                    </div>
+                    <h2 className="whiteText" style={{padding:'10px'}}>Created by:<br/>Nishith, Adit, Shridhik, Rishab, Tejas, and Vishal</h2>
                 </center>
             </div>
         );
