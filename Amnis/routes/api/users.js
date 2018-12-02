@@ -29,7 +29,11 @@ router.post('/', (req, res) => {
 	const newUser = new User({
 		name: req.body.name,
 		googleUserID: req.body.googleUserID
-	});
+    });
+    if(req.body.isProfessor)
+    {
+        newUser.isProfessor = req.body.isProfessor;
+    }
 	
 	newUser.save().then(user => res.json(user));
 });

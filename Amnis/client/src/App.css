@@ -64,8 +64,8 @@
     margin-left: -80px;
     margin-top: 5px;
     min-height: 600px;
-    /*border: 5px solid rgba(73, 204, 249, 1.0);*/
-    /*padding: 20px;*/
+    /*border: 5px solid rgba(73, 204, 249, 1.0);
+    padding: 20px;*/
 }
 
 .discussion-wrapper{
@@ -113,7 +113,7 @@ button:active {
 .button2 {
   display: inline-block;
   /*border: none;*/
-  padding: 1rem 1.6rem;
+  padding: 1rem 1.65rem;
   margin: 0;
   text-decoration: none;
   background: rgba(235, 84, 72, 1);

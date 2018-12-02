@@ -24,7 +24,10 @@ class App extends Component {
         super(props);
         document.body.style.backgroundColor = 'black';
         //document.body.style.webkitTextFillColor = 'white';
-        this.state = { currentUser: JSON.parse(localStorage.getItem('currentUser')) };
+        this.state = { 
+            currentUser: localStorage.getItem('currentUser'), 
+            isProfessor: !!localStorage.getItem('isProfessor')
+        };
 
         this.isUserLoggedIn = this.isUserLoggedIn.bind(this);
         this.responseGoogle = this.responseGoogle.bind(this);
@@ -43,26 +46,24 @@ class App extends Component {
       axios
         .get(`http://localhost:5000/api/users/${response.googleId}`) // ` used to insert ID in url
         .then(
-          (res)=> {
-            if(res.data)
-            {
-              console.log("Found user!");
-            }
-            else
-            {
-              console.log("No users found");
-              const newUser = {
-                name: response.profileObj.name,
-                googleUserID: response.googleId
-              };
-              axios
-                .post('http://localhost:5000/api/users', newUser)
-                .then((res) => {
-                  console.log(response.profileObj.name + " added!");
-                })
-                .catch((err) => {console.log(err);});
-            }
-            localStorage.setItem('currentUser', JSON.stringify(response.profileObj.name));
+            (res) => {
+              if (res.data) {
+                  console.log("Found user!");
+              }
+              else {
+                  console.log("No users found");
+                  const newUser = {
+                      name: response.profileObj.name,
+                      googleUserID: response.googleId
+                  };
+                  axios
+                      .post('http://localhost:5000/api/users', newUser)
+                      .then((res) => {
+                          console.log(response.profileObj.name + " added!");
+                      })
+                      .catch((err) => { console.log(err); });
+              }
+              localStorage.setItem('currentUser', response.profileObj.name);
           }
         )
         .catch((err)=> {console.log(err);});
