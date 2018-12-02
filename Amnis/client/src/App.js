@@ -8,6 +8,7 @@ import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import YoutubeVideo from './components/youtubevideo';
 import axios from 'axios';
+import LecturePage from './components/lecturePage';
 
 // Redux related imports: 
 import { Provider } from 'react-redux';
@@ -71,6 +72,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <AppNavbar />
+          <LecturePage />
           <Container>
             {this.state.currentUser === null ? 
               (<div>

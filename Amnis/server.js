@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const questions = require('./routes/api/questions');
 const users = require('./routes/api/users'); // Get the schemas
+const lectures = require('./routes/api/lectures');
 
 const app = express();
 
@@ -25,6 +26,7 @@ mongoose.set('useCreateIndex', true);
 //User Routes
 app.use('/api/questions', questions);
 app.use('/api/users', users);
+app.use('/api/lectures', lectures);
 
 const port = process.env.PORT || 5000; // for use with heroku
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION} from './types';
+import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION } from './types';
 
 export const getQuestions = () => dispatch => {
     dispatch(setQuestionsLoading());

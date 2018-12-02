@@ -22,6 +22,7 @@ class AppNavbar extends Component
             <div>
                 <Navbar color="success" dark expand="sm" className="mb-5">
                     <Container>
+                        <NavbarBrand href="/prof">Prof</NavbarBrand>
                         <NavbarBrand href="/main">Amnis</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
