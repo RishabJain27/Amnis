@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Button, Badge } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
 import { getQuestions, deleteQuestion, upvoteQuestion } from '../actions/questionActions';
@@ -47,7 +47,7 @@ class QuestionList extends Component {
                                         size="sm"
                                         onClick={this.onUpvoteClick.bind(this, _id)}
                                     >Upvote</Button>
-                                    {content} <span className="score">{score}</span>
+                                    {content} <span className="score"><Badge color="secondary">{score}</Badge></span>
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}

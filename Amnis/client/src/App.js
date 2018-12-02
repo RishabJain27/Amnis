@@ -46,7 +46,7 @@ class App extends Component {
       axios
         .get(`http://localhost:5000/api/users/${response.googleId}`) // ` used to insert ID in url
         .then(
-            (res) => {
+          (res) => {
               if (res.data) {
                   console.log("Found user!");
               }

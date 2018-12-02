@@ -3,15 +3,39 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import LandingPage from './LandingPage';
 import * as serviceWorker from './serviceWorker';
-import RolePage from './components/RolePage';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import AppNavbar from './components/AppNavbar';
+import { isUserLoggedIn } from './UserAuth';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
+function NoPage ({ location }){
+    return (
+        <div>
+            <AppNavbar />
+            <h2><center style={{paddingTop:'10%'}}>404 Error: No path found for '{location.pathname}'</center></h2>
+        </div>
+        
+    );
+};
+
+function AuthRedirect () {
+    localStorage.setItem('popup', true);
+    return (
+        <Redirect to={{
+            pathname: "/",
+            state: { redirected: true }
+        }} />
+    );
+};
+    
 
 const RoutedApp = () => (
     <BrowserRouter>
         <Switch> {/*matches exactly one route from below*/}
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/main" component={App} />
-            <Route exact path="/roles" component={RolePage} />
+            <Route path="/main" render={() => (
+                !isUserLoggedIn() ? (<AuthRedirect/>) : (<App />)
+            )} />
+            <Route component={NoPage} />
         </Switch>
     </BrowserRouter>
 );
