@@ -35,7 +35,7 @@ status.sort(function(a,b) {
     return b.val - a.val;
 });
 
-//console.log(status);
+console.log(status);
 
 const request = {
   config: {
@@ -55,18 +55,20 @@ const recognizeStream = client
     {
       // Splitting the streamed input
       var str =  `${data.results[0].alternatives[0].transcript}\n`;
-      var arr = str.split(/[^A-Za-z]/);
+      var res = str.toLowerCase();
+      var arr = res.split(/[^A-Za-z]/);
       for (var i = 0; i < arr.length; i++) {
-        //console.log("Array at " + i +" is:" + arr[i]);
+        console.log("Word " + i +" is:" + arr[i]);
         if(wordMap.has(arr[i]) && arr[i] != ''){    //if HashMap has the word
           var tempCount = wordMap.get(arr[i]);
           wordMap.set(arr[i], tempCount + 1);
           var a =  (status.some(e => e.name === arr[i]))
           if(a){
-            for(var i = 0; i < status.length; i++){
-              if(status[i].name === arr[i]){
-                status[i].val = tempCount+1;
+            for(var j = 0; j < status.length; j++){
+              if(status[j].name === arr[j]){
+                status[j].val = tempCount+1;
                 //break;
+                console.log('reached counter increase');
               }
             }
           } else if(status[status.length - 1].val < tempCount + 1 && !a){
@@ -75,9 +77,18 @@ const recognizeStream = client
             status.sort(function(a,b) {
               return b.val - a.val;
             });
+            console.log('replace lowest');
           }
-        }else if(arr[i] != ''){
+        }else if(arr[i] != '' && arr[i].length > 2){
           wordMap.set(arr[i], 1);
+          if(status[status.length - 1].val < 1){
+            status[status.length - 1].name = arr[i];
+            status[status.length - 1].val = 1;
+            status.sort(function(a,b) {
+              return b.val - a.val;
+            });
+          }
+          console.log('add NEw');
         }
       }
       console.log("Array is:" + '\n');
