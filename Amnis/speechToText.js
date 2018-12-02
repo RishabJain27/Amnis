@@ -5,6 +5,8 @@ const speech = require('@google-cloud/speech');
 
 const fs = require('fs');
 
+var wordMap = new Map();
+
 // Creates a client
 const client = new speech.SpeechClient();
 
@@ -22,7 +24,18 @@ const client = new speech.SpeechClient();
   });
 });
 
+var status = new Array();
+status.push({name: 'BOB', val: 0});
+status.push({name: 'TOM', val: 0});
+status.push({name: 'ROB', val: 0});
+status.push({name: 'JON', val: 0});
+status.push({name: 'JOE', val: 0});
 
+status.sort(function(a,b) {
+    return b.val - a.val;
+});
+
+//console.log(status);
 
 const request = {
   config: {
@@ -40,13 +53,37 @@ const recognizeStream = client
   .on('data', data =>
     //data.results[0] && data.results[0].alternatives[0];
     {
-
-      //console.log(data.results[0].alternatives[0].transcript);
+      // Splitting the streamed input
       var str =  `${data.results[0].alternatives[0].transcript}\n`;
-      var arr = str.split(" ");
+      var arr = str.split(/[^A-Za-z]/);
       for (var i = 0; i < arr.length; i++) {
-        console.log("Array at " + i +" is:" + arr[i]);
+        //console.log("Array at " + i +" is:" + arr[i]);
+        if(wordMap.has(arr[i]) && arr[i] != ''){    //if HashMap has the word
+          var tempCount = wordMap.get(arr[i]);
+          wordMap.set(arr[i], tempCount + 1);
+          var a =  (status.some(e => e.name === arr[i]))
+          if(a){
+            for(var i = 0; i < status.length; i++){
+              if(status[i].name === arr[i]){
+                status[i].val = tempCount+1;
+                //break;
+              }
+            }
+          } else if(status[status.length - 1].val < tempCount + 1 && !a){
+            status[status.length - 1].name = arr[i];
+            status[status.length - 1].val =  tempCount + 1;
+            status.sort(function(a,b) {
+              return b.val - a.val;
+            });
+          }
+        }else if(arr[i] != ''){
+          wordMap.set(arr[i], 1);
+        }
       }
+      console.log("Array is:" + '\n');
+
+      console.log(status);
+      //console.log(wordMap.entries());
     }
   );
 
