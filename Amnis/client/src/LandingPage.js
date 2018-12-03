@@ -48,6 +48,7 @@ class LandingPage extends Component {
                     }
                     localStorage.setItem('currentUser', response.profileObj.name);
                     localStorage.setItem('isProfessor', this.state.profClicked);
+                    this.props.history.push('/main');
                 })
                 .catch(err => {
                     console.log(err);

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container } from 'reactstrap';
 import logo from "../images/LogoBorder.png";
 
-class AppNavbar extends Component 
-{
-    constructor(props)
-    {
+class AppNavbar extends Component {
+
+    constructor(props) {
         super(props);
         this.state = {
             isOpen: false,
@@ -29,7 +28,7 @@ class AppNavbar extends Component
             <div>
                 <Navbar color="secondary" dark expand="sm" className="mb-7">
                     <Container>
-                        <NavbarBrand href="/">
+                        <NavbarBrand>
                             <img src={logo} alt="Amnis Logo" width="70" height="60" />
                             <h1 className="red_nav_text"> Amnis</h1></NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
@@ -49,7 +48,5 @@ class AppNavbar extends Component
         );
     }
 }
-
-
 
 export default AppNavbar;

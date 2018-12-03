@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { logoutUser } from '../UserAuth';
 
 class LogoutModal extends Component {
@@ -17,12 +17,6 @@ class LogoutModal extends Component {
         logoutUser();
         return(
             <div>
-                <Button
-                    color="dark"
-                    style={{marginBottom: '2rem'}}
-                    onClick={this.toggle}
-                >Sign Out</Button>
-
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}><center>You have been signed out.</center></ModalHeader>
                     <ModalBody>
