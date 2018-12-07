@@ -2,3 +2,5 @@
 package-lock.json
 /config/keys.js
 /config/amnis-service-account.json
+speech-NLP.js
+speechToText.js
