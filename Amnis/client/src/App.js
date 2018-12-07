@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AppNavbar from './components/AppNavbar';
-import Button from './components/button';
+import ButtonTag from './components/button';
 import QuestionList from './components/QuestionList';
 import ItemModal from './components/ItemModal';
 import { Container } from 'reactstrap';
@@ -95,7 +95,7 @@ class App extends Component {
               <div className="video-wrapper"><YoutubeVideo /></div>
               <div className="discussion-wrapper"><QuestionList /></div>
             </div>
-            <Button/>
+            <ButtonTag/>
           </Container>
           
         </div>
