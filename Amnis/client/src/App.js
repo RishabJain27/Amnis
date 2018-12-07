@@ -5,15 +5,14 @@ import QuestionList from './components/QuestionList';
 import ItemModal from './components/ItemModal';
 import { Container } from 'reactstrap';
 import { GoogleLogin } from 'react-google-login';
-//import { GoogleLogout } from 'react-google-login';
 import { Button } from 'reactstrap';
-import YoutubeVideo from './components/youtubevideo';
+import YoutubeVideo from './components/YoutubeVideo';
 import axios from 'axios';
 
 
 // Redux related imports: 
-import { Provider } from 'react-redux';
-import store from './store';
+//import { Provider } from 'react-redux';
+//import store from './store';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
@@ -79,9 +78,8 @@ class App extends Component {
   
   render() {
     return (
-      <Provider store={store}>
         <div>
-          <AppNavbar buttonVisible={true}/>
+          <AppNavbar history={this.props.history} buttonVisible={true}/>
           <Container>
             {(!this.isUserLoggedIn()) ? 
               (<div>
@@ -97,12 +95,11 @@ class App extends Component {
             }
             <ItemModal />
             <div className="App">
-              <div className="video-wrapper"><YoutubeVideo /></div>
+              <div className="video-wrapper"><YoutubeVideo videoURL="V2Afni3S-ok"/></div>
               <div className="discussion-wrapper"><QuestionList /></div>
             </div>
           </Container>
         </div>
-      </Provider>
     );
   }
 }

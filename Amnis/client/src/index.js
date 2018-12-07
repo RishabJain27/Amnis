@@ -4,8 +4,13 @@ import App from './App';
 import LandingPage from './LandingPage';
 import * as serviceWorker from './serviceWorker';
 import AppNavbar from './components/AppNavbar';
+import LecturePage from './LecturePage';
+import LectureView from './LectureView';
 import { isUserLoggedIn } from './UserAuth';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import store from './store';
 
 function NoPage ({ location }){
     return (
@@ -29,15 +34,24 @@ function AuthRedirect () {
     
 
 const RoutedApp = () => (
-    <BrowserRouter>
-        <Switch> {/*matches exactly one route from below*/}
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/main" render={() => (
-                !isUserLoggedIn() ? (<AuthRedirect/>) : (<App />)
-            )} />
-            <Route component={NoPage} />
-        </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <Switch> {/*matches exactly one route from below*/}
+                <Route exact path="/" component={LandingPage} />
+                <Route exact path="/main" render={({history}) => (
+                    !isUserLoggedIn() ? (<AuthRedirect />) : (<App history={history} />)
+                )} />
+                <Route exact path="/lectures" render={({history}) => (
+                    !isUserLoggedIn() ? (<AuthRedirect />) : (<LecturePage history={history} />)
+                )} />
+                <Route exact path="/lecture/:id" render={({history, match}) => (
+                    !isUserLoggedIn() ? (<AuthRedirect />) : (<LectureView match={match} history={history} />)
+                )} />
+                <Route component={NoPage} />
+            </Switch>
+        </BrowserRouter>
+    </Provider>
+    
 );
 
 ReactDOM.render(<RoutedApp />, document.getElementById('root'));

@@ -18,10 +18,16 @@ class AppNavbar extends Component {
         });
     }
 
+    landingRedirect = () => {
+        this.props.history.push("/");
+    }
+
     render() {
         let navButton = null;
+        let viewLectures = null;
         if(this.state.buttonVisible) {
-            navButton = <Button outline color="info">Help</Button>
+            navButton = <Button color="info" onClick={this.landingRedirect}>Log Out</Button>;
+            viewLectures = <NavLink href="/main">View Lectures</NavLink>;
         }
 
         return(
@@ -35,7 +41,7 @@ class AppNavbar extends Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/main">View Lectures</NavLink>
+                                    {viewLectures}
                                 </NavItem>
                                 <NavItem>
                                     {navButton}

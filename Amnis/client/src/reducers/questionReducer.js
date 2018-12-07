@@ -30,7 +30,6 @@ export default function(state = initialState, action) {
             };
         case UPVOTE_QUESTION:
             var indexID = state.questions.findIndex(i => i._id === action.payload);
-            //console.log(indexID);
             var newQuestion = state.questions[indexID];
             newQuestion.score++;
             return {

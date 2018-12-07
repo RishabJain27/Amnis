@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 // Create Question Schema
 const QuestionSchema = new Schema({
 	googleUserID: {
-		type: String
+        type: String,
+        required: true
 	},
 	content: {
 		type: String,
@@ -14,7 +15,19 @@ const QuestionSchema = new Schema({
 	score: {
 		type: Number,
 		default: 0
-	},
+    },
+    lectureID: {
+        type: Schema.Types.ObjectId,
+        ref: 'lectures',
+        required: true
+    },
+    upvotes: [
+        {
+            googleID: {
+                type: String
+            }
+        }
+    ],
 	date: {
 		type: Date,
 		default: Date.now

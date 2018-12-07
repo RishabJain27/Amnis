@@ -3,4 +3,7 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTIONS';
 export const QUESTIONS_LOADING = 'QUESTIONS_LOADING';
 export const UPVOTE_QUESTION = 'UPVOTE_QUESTION';
+export const GET_LECTURES = 'GET_LECTURES';
+export const ADD_LECTURE = 'ADD_LECTURE';
+export const CHECK_LECTURE = 'CHECK_LECTURE';
 export const GET_USER = 'GET_USER';

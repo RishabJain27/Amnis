@@ -47,8 +47,9 @@ class LandingPage extends Component {
                             .catch(err => { console.log(err); });
                     }
                     localStorage.setItem('currentUser', response.profileObj.name);
+                    localStorage.setItem('currentGoogleID', response.googleId);
                     localStorage.setItem('isProfessor', this.state.profClicked);
-                    this.props.history.push('/main');
+                    this.props.history.push('/lectures');
                 })
                 .catch(err => {
                     console.log(err);
@@ -85,6 +86,7 @@ class LandingPage extends Component {
                                     <button className="button2" onClick={(e) => { this.setState({ profClicked: true }); renderProps.onClick(e); }}>Professor Signup/Login with {googleIconGrey}</button>
                                 </div>
                             )}
+                            hostedDomain="ucsc.edu"
                             onSuccess={this.responseGoogle}
                             onFailure={this.responseGoogle}
                         />

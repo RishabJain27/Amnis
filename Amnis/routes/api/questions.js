@@ -19,7 +19,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	const newQuestion = new Question({
 		content: req.body.content,
-		score: req.body.score
+        score: req.body.score,
+        lectureID: req.body.lectureID,
+        googleUserID: req.body.googleUserID
 	});
 
 	newQuestion.save().then(question => res.json(question)); // save to database
@@ -28,12 +30,33 @@ router.post('/', (req, res) => {
 // @route PUT api/questions
 // @desc Put/upvote a question
 // @access Public
-router.put('/:id', (req, res) => {
-	Question.findByIdAndUpdate(req.params.id,
+router.put('/upvote/:id', (req, res) => {
+	/*Question.findByIdAndUpdate(req.params.id,
 		{
-			$inc: { score: 1 }
+            $inc: { score: 1 },
+            $set: { upvotes: [req.body.googleID] }
 		}).then((question)=>res.json({question})) // then() used with promises
-		.catch(err => res.status(404).json({success:false}));
+        .catch(err => res.status(404).json({success:false}));*/
+    Question.findById(req.params.id)
+		.then(question => {
+            question.score = question.score + 1;
+            question.upvotes.unshift({ googleID: req.body.googleID });
+            question.save().then(()=>res.json(question));
+        })
+		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
+});
+
+// @route PUT api/questions
+// @desc Put/downvote a question
+// @access Public
+router.put('/downvote/:id', (req, res) => {
+	Question.findById(req.params.id)
+		.then(question => {
+            question.score = question.score - 1;
+            question.upvotes = question.upvotes.filter(q => q.googleID !== req.body.googleID);
+            question.save().then(()=>res.json(question));
+        })
+		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
 });
 
 // @route DELETE api/questions/:id
