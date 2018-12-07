@@ -152,3 +152,8 @@ button:active {
 .whiteText {
     color:white;
 }
+
+.redText {
+    color:rgb(255, 94, 94);
+    padding: 4rem;
+}

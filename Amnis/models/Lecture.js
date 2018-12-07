@@ -29,6 +29,7 @@ const LectureSchema = new Schema({
         type: String,
         required: true
     },
+    tags: [String],
 	dateCreated: {
 		type: Date,
 		default: Date.now

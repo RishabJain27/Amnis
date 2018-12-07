@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AppNavbar from './components/AppNavbar';
 import axios from 'axios';
 import YoutubeVideo from './components/YoutubeVideo';
+import './App.css';
 // import { connect } from "react-redux";
 //import PropTypes from "prop-types";
 //import { checkLecture } from "./actions/lectureActions";
@@ -39,12 +40,15 @@ class LectureView extends Component {
         return (
             <div>
                 <AppNavbar history={this.props.history} buttonVisible={true} />
-                <span style={{color:'white'}}>Hello your attempted ID is: {this.props.match.params.id}
+                <span style={{color:'white'}}>
                     {this.state.doneLoading ? 
                         (<div>
                             {this.state.validURL ?
-                                (<YoutubeVideo videoURL={this.state.currentLecture.lectureUrl} />) :
-                                (<div> This is invalid!</div>)
+                                (<span>
+                                    <h1><center>{this.state.currentLecture.title}</center></h1>
+                                    <YoutubeVideo videoURL={this.state.currentLecture.lectureUrl} />
+                                </span>) :
+                                (<h1 className="redText"><center>This is an invalid URL! Click <a href="/lectures/">here</a> to go back.</center></h1>)
                             }
                         </div>)
                         : null

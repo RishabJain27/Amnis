@@ -22,21 +22,16 @@ router.get('/:id', (req, res) => {
 		.catch(err => res.status(404).json({failure:true}));
 });
 
-// @route POST api/lectures
-// @desc Post a new lecture
+// @route PUT api/lectures/tags/:id
+// @desc Put/upvote a question
 // @access Public
-router.post('/', (req, res) => {
-	const newLecture = new Lecture({
-        title: req.body.title,
-        description: req.body.description,
-		posterName: req.body.posterName,
-		posterGoogleID: req.body.posterGoogleID,
-        lectureUrl: req.body.lectureUrl,
-        isLive: req.body.isLive
-	});
-	
-	newLecture.save().then(lecture => res.json(lecture))
-		.catch(err => console.log(err));
+router.put('/tags/:id', (req, res) => {
+    Lecture.findById(req.params.id)
+		.then(lecture => {
+            lecture.tags = req.body.tags;
+            lecture.save().then(()=>res.json(lecture));
+        })
+		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
 });
 
 // @route DELETE api/lectures/:id
