@@ -1,6 +1,8 @@
+//Makes databse calls for questions on disucssion board
 import axios from 'axios';
 import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION } from './types';
 
+//GET call
 export const getQuestions = () => dispatch => {
     dispatch(setQuestionsLoading());
     axios
@@ -13,6 +15,7 @@ export const getQuestions = () => dispatch => {
         );
 };
 
+//POST call
 export const addQuestion = (question) => dispatch => {
     axios
         .post('http://localhost:5000/api/questions', question)
@@ -24,6 +27,7 @@ export const addQuestion = (question) => dispatch => {
         );
 };
 
+//DELETE call
 export const deleteQuestion = (id) => dispatch => {
     axios
         .delete(`http://localhost:5000/api/questions/${id}`)
@@ -35,6 +39,8 @@ export const deleteQuestion = (id) => dispatch => {
         );
 };
 
+//PUT call
+//changes score of a question
 export const upvoteQuestion = (id, reload) => dispatch => {
     axios
         .put(`http://localhost:5000/api/questions/${id}`)
@@ -50,7 +56,7 @@ export const upvoteQuestion = (id, reload) => dispatch => {
         });
 };
 
-
+//Doesn't change the database
 export const setQuestionsLoading = () => {
     return {
         type: QUESTIONS_LOADING

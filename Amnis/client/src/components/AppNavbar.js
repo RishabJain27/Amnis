@@ -1,3 +1,4 @@
+//Creates component for the navigation bar displayed at the top of the webpage
 import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Container } from 'reactstrap';
 

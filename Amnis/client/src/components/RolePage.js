@@ -1,3 +1,4 @@
+//Compnent is used for testing
 import React, { Component } from 'react';
 import LecturePage from './lecturePage';
 

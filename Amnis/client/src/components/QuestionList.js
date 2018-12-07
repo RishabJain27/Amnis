@@ -1,3 +1,4 @@
+//Creates component for list of questions of discussion board
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -43,6 +44,7 @@ class QuestionList extends Component {
                                     >&times;</Button>
                                      <Button
                                         className="remove-btn"
+                                        id="upvoteButton"
                                         color="primary"
                                         size="sm"
                                         onClick={this.onUpvoteClick.bind(this, _id)}

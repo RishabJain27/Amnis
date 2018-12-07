@@ -1,3 +1,4 @@
+//Creates component to display live video lecture
 import React from 'react';
 import YouTube from 'react-youtube';
  
