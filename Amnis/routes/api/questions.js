@@ -62,8 +62,6 @@ router.put('/downvote/:id', (req, res) => {
 	Question.findById(req.params.id)
 		.then(question => {
             question.score = question.score - 1;
-            console.log(question.upvotes.filter(q => q === req.body.googleID));
-            console.log(question.upvotes.filter(q => q === req.body.googleID));
             question.upvotes = question.upvotes.filter(q => q !== req.body.googleID);
             question.save().then(()=>res.json(question));
         })

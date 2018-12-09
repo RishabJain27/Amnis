@@ -3,7 +3,6 @@ import AppNavbar from './components/AppNavbar';
 import axios from 'axios';
 import YoutubeVideo from './components/YoutubeVideo';
 import QuestionList from './components/QuestionList';
-import ItemModal from './components/ItemModal';
 import './App.css';
 import { Button, Table } from 'reactstrap';
 import { getUserID } from './UserAuth';

@@ -28,7 +28,10 @@ import PropTypes from "prop-types";
 import AppNavbar from "./components/AppNavbar";
 import { getUser, getUserID, isUserProfessor } from "./UserAuth";
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import APIkey from './components/APIkey';
+
+
 
 class LecturePage extends Component {
 
@@ -123,7 +126,11 @@ class LecturePage extends Component {
                 <AppNavbar history={this.props.history} buttonVisible={true}/>
                 <h1 className="whiteText" style={{paddingTop:'1rem', fontSize:'350%'}}><center><b>Lectures</b></center></h1>
                 <Container style={{ marginTop: '1.5rem', marginBottom: '5rem' }}>
-                    {this.state.isProfessor ? (<Button color="success" onClick={this.formToggle} style={{marginBottom:'1rem'}}>Create a New Lecture</Button>):null}
+                    {this.state.isProfessor && (
+                    <Button color="success" onClick={this.formToggle} style={{marginBottom:'1rem'}}>
+                        Create a New Lecture&nbsp;
+                        {!this.state.formOpen ? (<FontAwesomeIcon icon="plus" />) : ( <FontAwesomeIcon icon="minus" />)}
+                    </Button>)}
                     <Collapse isOpen={this.state.formOpen}>
                         <Form style={{marginBottom:'2rem'}} onSubmit={this.onSubmit}>
                             <FormGroup>
@@ -169,7 +176,7 @@ class LecturePage extends Component {
                                 <Button
                                     color="info"
                                     style={{ marginTop: '2rem' }}
-                                    block>Start Streaming!
+                                    block><FontAwesomeIcon icon="video" /> Start Streaming!
                                 </Button>
                             </FormGroup>
                         </Form>

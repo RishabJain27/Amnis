@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
 import { getLectureQuestions, deleteQuestion, upvoteQuestion, downvoteQuestion, addQuestion } from '../actions/questionActions';
 import { getUser, getUserID } from '../UserAuth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import '../App.css'
 
@@ -72,7 +73,7 @@ class QuestionList extends Component {
                                                 color="danger"
                                                 size="sm"
                                                 onClick={this.onDeleteClick.bind(this, _id)}
-                                                >&times;</Button>
+                                                ><FontAwesomeIcon icon="trash"/></Button>
                                         )}
                                         {!(upvotes.some(ID => ID === this.state.currentID)) ? (
                                             <Button
@@ -80,14 +81,14 @@ class QuestionList extends Component {
                                                 color="primary"
                                                 size="sm"
                                                 onClick={this.onUpvoteClick.bind(this, _id)}
-                                            >Upvote</Button>
+                                            ><FontAwesomeIcon icon="arrow-up" /></Button>
                                         ) : (
                                             <Button
                                                 className="remove-btn"
                                                 color="warning"
                                                 size="sm"
                                                 onClick={this.onDownvoteClick.bind(this, _id)}
-                                            >Downvote</Button>
+                                            ><FontAwesomeIcon icon="arrow-down" /></Button>
                                         )}
                                         <span className="normalText">{content}</span><span className="score"><Badge color="secondary">{score}</Badge></span>
                                     </ListGroupItem>
@@ -103,7 +104,7 @@ class QuestionList extends Component {
                                     placeholder="Ask a question here!"
                                     onChange={this.onChange} />
                                 <InputGroupAddon addonType="append">
-                                        <Button onClick={this.onSubmitClick.bind(this)} disabled={this.state.inputQuestion === ''}>Add</Button>
+                                        <Button color="success" onClick={this.onSubmitClick.bind(this)} disabled={this.state.inputQuestion === ''}>Add</Button>
                                 </InputGroupAddon>
                         </InputGroup>
                     </TransitionGroup>
