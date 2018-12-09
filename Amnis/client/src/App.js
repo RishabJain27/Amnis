@@ -78,7 +78,7 @@ class App extends Component {
   
   render() {
     return (
-        <div>
+        <div className="landingpage-bg">
           <AppNavbar history={this.props.history} buttonVisible={true}/>
           <Container>
             {(!this.isUserLoggedIn()) ? 

@@ -13,11 +13,9 @@ class LandingPage extends Component {
 
     constructor(props) {
         super(props);
-        document.body.style.backgroundColor = "black";
-        //document.body.style.webkitTextFillColor = "white";
-        //document.body.style.fontSize = '50px';
-        document.head.style.fontSize = "100px";
-        document.body.style.backgroundSize = "cover";
+        // document.body.style.backgroundColor = "black";
+        // document.head.style.fontSize = "100px";
+        // document.body.style.backgroundSize = "cover";
         this.state = { 
             currentUser: null, 
             profClicked: false,
@@ -35,7 +33,6 @@ class LandingPage extends Component {
                 .get(`http://localhost:5000/api/users/${response.googleId}`) // Back-ticks ` used to insert ID in url
                 .then(res => {
                     if(!res.data) {
-                        console.log("No users found");
                         const newUser = {
                             name: response.profileObj.name,
                             googleUserID: response.googleId,
@@ -67,7 +64,7 @@ class LandingPage extends Component {
         const googleIconGrey = <img src={GoogleLogoGrey} alt="Google Logo" width="80" height="25"/>;
 
         return (
-            <div>
+            <div className="landingpage-bg">
                 <AppNavbar buttonVisible={false}/>
                 {localStorage.getItem('popup') && <LoginModal />}
                 {this.resetRedirect()}

@@ -6,6 +6,7 @@ import QuestionList from './components/QuestionList';
 import './App.css';
 import { Button, Table } from 'reactstrap';
 import { getUserID } from './UserAuth';
+import './App.css';
 
 class LectureView extends Component {
     constructor(props) {
@@ -67,7 +68,7 @@ class LectureView extends Component {
 
     render() {
         return (
-            <div>
+            <div className="landingpage-bg">
                 <AppNavbar history={this.props.history} buttonVisible={true} />
                 <span style={{color:'white'}}>
                     {this.state.doneLoading ? 

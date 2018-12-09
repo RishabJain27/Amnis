@@ -29,6 +29,7 @@ import AppNavbar from "./components/AppNavbar";
 import { getUser, getUserID, isUserProfessor } from "./UserAuth";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './App.css';
 import APIkey from './components/APIkey';
 
 
@@ -122,7 +123,7 @@ class LecturePage extends Component {
     render() {
         const { lectures } = this.props.lecture; 
         return(
-            <div>
+            <div className="landingpage-bg">
                 <AppNavbar history={this.props.history} buttonVisible={true}/>
                 <h1 className="whiteText" style={{paddingTop:'1rem', fontSize:'350%'}}><center><b>Lectures</b></center></h1>
                 <Container style={{ marginTop: '1.5rem', marginBottom: '5rem' }}>

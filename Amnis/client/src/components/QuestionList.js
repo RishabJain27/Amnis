@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button, Badge, Input, InputGroup, InputGroupAddon, Label } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Button, Badge, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from "react-redux";
 import { getLectureQuestions, deleteQuestion, upvoteQuestion, downvoteQuestion, addQuestion } from '../actions/questionActions';
