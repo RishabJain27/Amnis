@@ -75,7 +75,12 @@ class LectureView extends Component {
                         (<div>
                             {this.state.validURL ?
                                 (<span>
-                                    <h1 className="viewTitle"><center>{this.state.currentLecture.title}</center></h1>
+                                    <h1 className="viewTitle">
+                                    {this.state.currentLecture.isLive && 
+                                     this.state.currentLecture.posterGoogleID === getUserID() &&
+                                     (<Button color="danger" style={{marginLeft:'20px', float:'left'}}>Stop Streaming</Button>)
+                                    }
+                                    <div style={{textAlign:'center'}}>{this.state.currentLecture.title}</div></h1>
                                     <div className="App">
                                         <div className="video-wrapper">
                                             <YoutubeVideo videoURL={this.state.currentLecture.lectureUrl} />
