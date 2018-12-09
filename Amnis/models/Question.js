@@ -21,13 +21,7 @@ const QuestionSchema = new Schema({
         ref: 'lectures',
         required: true
     },
-    upvotes: [
-        {
-            googleID: {
-                type: String
-            }
-        }
-    ],
+    upvotes: [String],
 	date: {
 		type: Date,
 		default: Date.now

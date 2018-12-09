@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION} from './types';
+import { getUserID } from '../UserAuth';
+import { GET_QUESTIONS, GET_LECTURE_Q, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING } from './types';
 
 export const getQuestions = () => dispatch => {
     dispatch(setQuestionsLoading());
@@ -8,6 +9,17 @@ export const getQuestions = () => dispatch => {
         .then(res => 
             dispatch({
                 type: GET_QUESTIONS,
+                payload: res.data
+            })
+        );
+};
+
+export const getLectureQuestions = (id) => dispatch => {
+    axios
+        .get(`http://localhost:5000/api/questions/findLecture/${id}`)
+        .then(res => 
+            dispatch({
+                type: GET_LECTURE_Q,
                 payload: res.data
             })
         );
@@ -35,17 +47,28 @@ export const deleteQuestion = (id) => dispatch => {
         );
 };
 
-export const upvoteQuestion = (id, reload) => dispatch => {
+export const upvoteQuestion = (id, lectureID, reload) => dispatch => {
+    const currentUserID = {
+        googleID: getUserID()
+    };
     axios
-        .put(`http://localhost:5000/api/questions/upvote/${id}`)
-        .then(res =>
-            dispatch({
-                type: UPVOTE_QUESTION,
-                payload: id
-            })
-        ).then(() => {
-            if(reload === true) {
-                dispatch(getQuestions());
+        .put(`http://localhost:5000/api/questions/upvote/${id}`, currentUserID)
+        .then(res => {
+            if (reload === true) {
+                dispatch(getLectureQuestions(lectureID));
+            }
+        });
+};
+
+export const downvoteQuestion = (id, lectureID, reload) => dispatch => {
+    const currentUserID = {
+        googleID: getUserID()
+    };
+    axios
+        .put(`http://localhost:5000/api/questions/downvote/${id}`, currentUserID)
+        .then(res => {
+            if (reload === true) {
+                dispatch(getLectureQuestions(lectureID));
             }
         });
 };

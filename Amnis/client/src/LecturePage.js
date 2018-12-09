@@ -67,8 +67,9 @@ class LecturePage extends Component {
             { titleError: this.state.inputTitle === '',
               duplicateError: this.checkDuplicateURL() },
             () => {
-                axios.get(`https://www.googleapis.com/youtube/v3/videos?part=id&id=${this.state.inputURL}&key=${APIkey}`)
+                axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${this.state.inputURL}&key=${APIkey}`)
                     .then((res) => {
+                        console.log(res.data);
                         this.setState({ URLError: res.data.items.length === 0 },
                             () => {
                                 if (!this.state.titleError && !this.state.URLError && !this.state.duplicateError) {
@@ -79,7 +80,7 @@ class LecturePage extends Component {
                                         posterName: this.state.currentUser,
                                         posterGoogleID: this.state.currentID,
                                         lectureUrl: this.state.inputURL,
-                                        isLive: true
+                                        isLive: res.data.items[0].snippet.liveBroadcastContent === "live"
                                     };
                                     this.props.addLecture(newLecture, this.props.history);
                                 }

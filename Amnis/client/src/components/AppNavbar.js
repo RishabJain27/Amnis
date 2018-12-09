@@ -27,16 +27,17 @@ class AppNavbar extends Component {
         let viewLectures = null;
         if(this.state.buttonVisible) {
             navButton = <Button color="info" onClick={this.landingRedirect}>Log Out</Button>;
-            viewLectures = <NavLink href="/main">View Lectures</NavLink>;
+            viewLectures = <NavLink href="/lectures">View Lectures</NavLink>;
         }
 
         return(
             <div>
-                <Navbar color="secondary" dark expand="sm" className="mb-7">
+                <Navbar color="secondary" dark expand="sm" className="mb-7" style={{height:'85px'}}>
                     <Container>
                         <NavbarBrand>
-                            <img src={logo} alt="Amnis Logo" width="70" height="60" />
-                            <h1 className="red_nav_text"> Amnis</h1></NavbarBrand>
+                            <img src={logo} alt="Amnis Logo" width="80" height="75"/>
+                            <h1 className="red_nav_text"> Amnis</h1>
+                        </NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>

@@ -32,7 +32,7 @@ const LectureSchema = new Schema({
     tags: [
         {
             name: String,
-            value: Number
+            val: Number
         }
     ],
 	dateCreated: {

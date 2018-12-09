@@ -1,4 +1,4 @@
-import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION } from '../actions/types';
+import { GET_QUESTIONS, ADD_QUESTION, DELETE_QUESTION, QUESTIONS_LOADING, UPVOTE_QUESTION, GET_LECTURE_Q } from '../actions/types';
 
 const initialState = {
     questions: [],
@@ -8,6 +8,12 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type) {
         case GET_QUESTIONS: 
+            return {
+                ...state,
+                questions: action.payload,
+                loading: false
+            };
+        case GET_LECTURE_Q: 
             return {
                 ...state,
                 questions: action.payload,

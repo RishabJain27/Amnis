@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import AppNavbar from './components/AppNavbar';
 import axios from 'axios';
 import YoutubeVideo from './components/YoutubeVideo';
+import QuestionList from './components/QuestionList';
+import ItemModal from './components/ItemModal';
 import './App.css';
-// import { connect } from "react-redux";
-//import PropTypes from "prop-types";
-//import { checkLecture } from "./actions/lectureActions";
+import { Button, Table } from 'reactstrap';
+import { getUserID } from './UserAuth';
 
 class LectureView extends Component {
     constructor(props) {
@@ -15,11 +16,24 @@ class LectureView extends Component {
             validURL: false,
             doneLoading: false,
             videoID: this.props.match.params.id,
-            currentLecture: null
+            currentLecture: null,
+            currentID: getUserID()
         };  
+        this.externalURL = this.externalURL.bind(this);
+        this.createButton = this.createButton.bind(this);
     }
 
     componentDidMount() {
+        this.updateLecture();
+        /*var intervalID = setInterval(()=> {this.updateLecture()}, 10000);
+        this.setState({intervalID: intervalID});*/
+    }
+
+    componentWillUnmount() {
+        //clearInterval(this.state.intervalID);
+    }
+
+    updateLecture = () => {
         axios
             .get(`http://localhost:5000/api/lectures/${this.state.videoID}`)
             .then(res => {
@@ -36,6 +50,22 @@ class LectureView extends Component {
             });
     }
 
+    createButton = (_id, name) => {
+        if(name !== '') {
+            return (
+                <th key={_id}>
+                    <Button onClick={(e) => this.externalURL(e,name)}>
+                        <b>{name}</b>
+                    </Button>
+                </th>);
+        }
+        return null;
+    }
+
+    externalURL = (event, link) => {
+        window.open('https://wikipedia.org/wiki/' + link, '_blank');
+    }
+
     render() {
         return (
             <div>
@@ -45,8 +75,22 @@ class LectureView extends Component {
                         (<div>
                             {this.state.validURL ?
                                 (<span>
-                                    <h1><center>{this.state.currentLecture.title}</center></h1>
-                                    <YoutubeVideo videoURL={this.state.currentLecture.lectureUrl} />
+                                    <h1 className="viewTitle"><center>{this.state.currentLecture.title}</center></h1>
+                                    <div className="App">
+                                        <div className="video-wrapper">
+                                            <YoutubeVideo videoURL={this.state.currentLecture.lectureUrl} />
+                                            <div>
+                                                <Table borderless>
+                                                    <thead>
+                                                        <tr>
+                                                            {this.state.currentLecture.tags.map(({ _id, name }) => this.createButton(_id, name))}
+                                                        </tr>
+                                                    </thead>
+                                                </Table>
+                                            </div>
+                                        </div>
+                                        <div className="discussion-wrapper"><QuestionList lectureID={this.state.currentLecture._id}/></div>
+                                    </div>
                                 </span>) :
                                 (<h1 className="redText"><center>This is an invalid URL! Click <a href="/lectures/">here</a> to go back.</center></h1>)
                             }
@@ -60,15 +104,3 @@ class LectureView extends Component {
 }
 
 export default LectureView;
-/*LectureView.propTypes = {
-    checkLecture: PropTypes.func.isRequired,
-    lecture: PropTypes.object
-};
-
-const mapStateToProps = (state) => ({
-    lecture: state.lecture
-});
-
-export default connect(
-    mapStateToProps, 
-    { checkLecture })(LectureView);*/
