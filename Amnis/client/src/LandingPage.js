@@ -8,6 +8,7 @@ import AmnisLogo from "./images/Logo.png";
 import GoogleLogoRed from "./images/GoogleRed.png";
 import GoogleLogoGrey from "./images/GoogleGrey.png";
 import LoginModal from "./components/LoginModal";
+import { GoogleClientID } from './components/APIkey';
 
 class LandingPage extends Component {
 
@@ -75,7 +76,7 @@ class LandingPage extends Component {
 
                     <div>
                         <GoogleLogin
-                            clientId="496303468611-kdoi6gtil8qb8f0o807c8f6b69bsiffa.apps.googleusercontent.com"
+                            clientId={GoogleClientID}
                             render={renderProps => (
                                 <div>
                                     <button onClick={(e) => { this.setState({ profClicked: false }); renderProps.onClick(e); }}>Student Signup/Login with {googleIconRed}</button>

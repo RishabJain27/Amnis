@@ -30,7 +30,7 @@ import { getUser, getUserID, isUserProfessor } from "./UserAuth";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './App.css';
-import APIkey from './components/APIkey';
+import { APIkey } from './components/APIkey';
 
 
 
@@ -48,6 +48,7 @@ class LecturePage extends Component {
             titleError: false,
             URLError: false,
             duplicateError: false,
+            tooltipOpen: false,
             inputTitle: '',
             inputDesc: '',
             inputURL: ''
@@ -59,6 +60,10 @@ class LecturePage extends Component {
 
     formToggle = () => {
         this.setState({ formOpen: !this.state.formOpen });
+    }
+
+    tooltipToggle = () => {
+        this.setState({ tooltipOpen: !this.state.tooltipOpen });
     }
 
     checkDuplicateURL = () => {
@@ -77,7 +82,6 @@ class LecturePage extends Component {
                         this.setState({ URLError: res.data.items.length === 0 },
                             () => {
                                 if (!this.state.titleError && !this.state.URLError && !this.state.duplicateError) {
-                                    console.log("Good to go!");
                                     const newLecture = {
                                         title: this.state.inputTitle,
                                         description: this.state.inputDesc,
@@ -193,7 +197,12 @@ class LecturePage extends Component {
                                         <CardSubtitle>{posterName}</CardSubtitle>
                                         <CardText>{description}</CardText>
                                         {this.printDate(dateCreated)}
-                                        <Button onClick={(e) => this.redirect(e, _id)} color={isLive ? "danger" : "secondary"} style={{float:'right'}}>View</Button>
+                                        <Button 
+                                            onClick={(e) => this.redirect(e, _id)} 
+                                            color={isLive ? "danger" : "secondary"} 
+                                            style={{float:'right'}}> 
+                                            {isLive && (<FontAwesomeIcon icon="circle"/>)} View
+                                        </Button>
                                     </CardBody>
                                 </Card>
                             </CSSTransition>

@@ -13,9 +13,9 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowAltCircleUp, faArrowUp, faArrowDown, faVideo, faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faArrowUp, faArrowDown, faVideo, faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faArrowAltCircleUp, faArrowUp, faArrowDown, faVideo, faPlus, faMinus, faTrash);
+library.add(faCircle, faArrowUp, faArrowDown, faVideo, faPlus, faMinus, faTrash);
 
 function NoPage ({ location }){
     return (
