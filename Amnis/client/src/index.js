@@ -43,9 +43,6 @@ const RoutedApp = () => (
         <BrowserRouter>
             <Switch> {/*matches exactly one route from below*/}
                 <Route exact path="/" component={LandingPage} />
-                <Route exact path="/main" render={({history}) => (
-                    !isUserLoggedIn() ? (<AuthRedirect />) : (<App history={history} />)
-                )} />
                 <Route exact path="/lectures" render={({history}) => (
                     !isUserLoggedIn() ? (<AuthRedirect />) : (<LecturePage history={history} />)
                 )} />

@@ -8,4 +8,4 @@ export const GET_LECTURES = 'GET_LECTURES';
 export const ADD_LECTURE = 'ADD_LECTURE';
 export const CHECK_LECTURE = 'CHECK_LECTURE';
 export const GET_LECTURE_Q = 'GET_LECTURE_Q';
-export const GET_USER = 'GET_USER';
+export const CHANGE_STREAM = 'CHANGE_STREAM';

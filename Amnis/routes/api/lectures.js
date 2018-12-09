@@ -51,6 +51,18 @@ router.put('/tags/:id', (req, res) => {
 		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
 });
 
+// @route PUT api/lectures/toggleStream/:id
+// @desc Update isLive for a lecture
+// @access Public
+router.put('/toggleStream/:id', (req, res) => {
+    Lecture.findById(req.params.id)
+		.then(lecture => {
+            lecture.isLive = !lecture.isLive;
+            lecture.save().then(()=>res.json(lecture));
+        })
+		.catch(err => res.status(404).json({success:false})); // status used for errors, res.json used for success
+});
+
 
 // @route DELETE api/lectures/:id
 // @desc Delete a lecture by ID

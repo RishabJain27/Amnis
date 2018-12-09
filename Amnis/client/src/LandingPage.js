@@ -9,18 +9,17 @@ import GoogleLogoRed from "./images/GoogleRed.png";
 import GoogleLogoGrey from "./images/GoogleGrey.png";
 import LoginModal from "./components/LoginModal";
 import { GoogleClientID } from './components/APIkey';
+import { serverURL } from './components/ServerRoutes';
+import { isUserLoggedIn } from './UserAuth';
 
 class LandingPage extends Component {
 
     constructor(props) {
         super(props);
-        // document.body.style.backgroundColor = "black";
-        // document.head.style.fontSize = "100px";
-        // document.body.style.backgroundSize = "cover";
         this.state = { 
             currentUser: null, 
             profClicked: false,
-            loggedOut: (localStorage.getItem('currentUser') === null) ? false : true
+            loggedOut: isUserLoggedIn()
         };
         this.responseGoogle = this.responseGoogle.bind(this);
         this.resetRedirect = this.resetRedirect.bind(this);
@@ -31,7 +30,7 @@ class LandingPage extends Component {
         if (response.profileObj) {
             console.log(response.googleId);
             axios
-                .get(`http://localhost:5000/api/users/${response.googleId}`) // Back-ticks ` used to insert ID in url
+                .get(`${serverURL}users/${response.googleId}`) // Back-ticks ` used to insert ID in url
                 .then(res => {
                     if(!res.data) {
                         const newUser = {
@@ -40,7 +39,7 @@ class LandingPage extends Component {
                             isProfessor: this.state.profClicked
                         };
                         axios
-                            .post("http://localhost:5000/api/users", newUser)
+                            .post(`${serverURL}users`, newUser)
                             .then(res => { console.log(response.profileObj.name + " added!"); })
                             .catch(err => { console.log(err); });
                     }

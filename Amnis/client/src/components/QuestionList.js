@@ -91,7 +91,7 @@ class QuestionList extends Component {
                                             ><FontAwesomeIcon icon="arrow-down" /></Button>
                                         )}
                                         </span>)}
-                                        <span className="normalText">{content}</span><span className="score"><Badge color="secondary">{score}</Badge></span>
+                                        <span className="normalText">{content} {content.length <= 48 && content.length >= 46 && (<span>&nbsp;&nbsp;</span>)}</span><span className="score"><Badge color="secondary">{score}</Badge></span>
                                     </ListGroupItem>
                                 </CSSTransition>
                             ))}

@@ -7,6 +7,7 @@ import './App.css';
 import { Button, Table } from 'reactstrap';
 import { getUserID } from './UserAuth';
 import './App.css';
+import { serverURL } from './components/ServerRoutes';
 
 class LectureView extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class LectureView extends Component {
         };  
         this.externalURL = this.externalURL.bind(this);
         this.createButton = this.createButton.bind(this);
+        this.stopStream = this.stopStream.bind(this);
     }
 
     componentDidMount() {
@@ -35,7 +37,7 @@ class LectureView extends Component {
 
     updateLecture = () => {
         axios
-            .get(`http://localhost:5000/api/lectures/${this.state.videoID}`)
+            .get(`${serverURL}lectures/${this.state.videoID}`)
             .then(res => {
                 if(res.data) {
                     this.setState({
@@ -66,6 +68,15 @@ class LectureView extends Component {
         window.open('https://wikipedia.org/wiki/' + link, '_blank');
     }
 
+    stopStream = (event) => {
+        axios
+            .put(`${serverURL}lectures/toggleStream/${this.state.videoID}`)
+            .then(res => {
+                this.updateLecture();
+                this.props.history.push("/lectures");
+            });
+    }
+
     render() {
         return (
             <div className="landingpage-bg">
@@ -78,7 +89,7 @@ class LectureView extends Component {
                                     <h1 className="viewTitle">
                                     {this.state.currentLecture.isLive && 
                                      this.state.currentLecture.posterGoogleID === getUserID() &&
-                                     (<Button color="danger" style={{marginLeft:'20px', float:'left'}}>Stop Streaming</Button>)
+                                     (<Button color="danger" onClick={this.stopStream}style={{marginLeft:'20px', float:'left'}}>Stop Streaming</Button>)
                                     }
                                     <div style={{textAlign:'center'}}>{this.state.currentLecture.title}</div></h1>
                                     <div className="App">

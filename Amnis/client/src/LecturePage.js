@@ -8,7 +8,6 @@ import {
   CardTitle,
   CardText,
   CardSubtitle,
-  Col,
   CardColumns,
   Collapse,
   Form,
@@ -18,8 +17,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  Label,
-  Tooltip
+  Label
 } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
@@ -31,6 +29,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './App.css';
 import { APIkey } from './components/APIkey';
+import { clientURL, youtubeURL } from './components/ServerRoutes';
 
 
 
@@ -117,7 +116,7 @@ class LecturePage extends Component {
     }
 
     redirect = (event, vidID) => {
-        window.location.href=`http://localhost:3000/lecture/${vidID}`;
+        window.location.href=`${clientURL}lecture/${vidID}`;
     }
 
     onChange = (event) => {
@@ -162,7 +161,7 @@ class LecturePage extends Component {
                                 <Label for="lectureURL" className="whiteText"><b>Youtube Video ID:</b></Label>
                                 <InputGroup>
                                     <InputGroupAddon addonType="prepend">
-                                        <InputGroupText>https://www.youtube.com/watch?v=</InputGroupText>
+                                        <InputGroupText>{youtubeURL}</InputGroupText>
                                     </InputGroupAddon>
                                     <Input
                                         type="text"
