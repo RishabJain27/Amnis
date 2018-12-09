@@ -20,12 +20,12 @@ class QuestionList extends Component {
 
     componentDidMount() {
         this.props.getLectureQuestions(this.props.lectureID);
-        /*var intervalID = setInterval(()=> {this.props.getQuestions()}, 2000);
-        this.setState({intervalID: intervalID});*/
+        var intervalID = setInterval(()=> {this.props.getLectureQuestions(this.props.lectureID)}, 2000);
+        this.setState({intervalID: intervalID});
     }
 
     componentWillUnmount() {
-        //clearInterval(this.state.intervalID);
+        clearInterval(this.state.intervalID);
     }
 
     onDeleteClick = (id) => {
@@ -67,15 +67,15 @@ class QuestionList extends Component {
                             {questions.map(({ _id, googleUserID, content, upvotes, score }) => (
                                 <CSSTransition key={_id} timeout={500} classNames="fade">
                                     <ListGroupItem>
-                                        {googleUserID === this.state.currentID && (
+                                        {googleUserID === this.state.currentID ? (
                                             <Button
                                                 className="remove-btn"
                                                 color="danger"
                                                 size="sm"
                                                 onClick={this.onDeleteClick.bind(this, _id)}
                                                 ><FontAwesomeIcon icon="trash"/></Button>
-                                        )}
-                                        {!(upvotes.some(ID => ID === this.state.currentID)) ? (
+                                        ): (<span>
+                                            {!(upvotes.some(ID => ID === this.state.currentID)) ? (
                                             <Button
                                                 className="remove-btn"
                                                 color="primary"
@@ -90,6 +90,7 @@ class QuestionList extends Component {
                                                 onClick={this.onDownvoteClick.bind(this, _id)}
                                             ><FontAwesomeIcon icon="arrow-down" /></Button>
                                         )}
+                                        </span>)}
                                         <span className="normalText">{content}</span><span className="score"><Badge color="secondary">{score}</Badge></span>
                                     </ListGroupItem>
                                 </CSSTransition>

@@ -25,12 +25,12 @@ class LectureView extends Component {
 
     componentDidMount() {
         this.updateLecture();
-        /*var intervalID = setInterval(()=> {this.updateLecture()}, 10000);
-        this.setState({intervalID: intervalID});*/
+        var intervalID = setInterval(()=> {this.updateLecture()}, 10000);
+        this.setState({intervalID: intervalID});
     }
 
     componentWillUnmount() {
-        //clearInterval(this.state.intervalID);
+        clearInterval(this.state.intervalID);
     }
 
     updateLecture = () => {
