@@ -1,7 +1,10 @@
+// Defines the express routes to do GET, POST, PUT, and DELETE requests
+// pertaining to users.
+
 const express = require('express');
 const router = express.Router();
 
-// Question Model
+// User Model
 const User = require('../../models/User');
 
 // @route GET api/users
@@ -13,7 +16,7 @@ router.get('/', (req, res) => {
 		.then(users => res.json(users))
 });
 
-// @route GET api/users
+// @route GET api/users/:id
 // @desc Get specific user by ID
 // @access Public
 router.get('/:id', (req, res) => {
@@ -23,7 +26,7 @@ router.get('/:id', (req, res) => {
 });
 
 // @route POST api/users
-// @desc Post a user
+// @desc Add a new user
 // @access Public
 router.post('/', (req, res) => {
 	const newUser = new User({

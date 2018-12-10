@@ -1,3 +1,5 @@
+// Previous framework modal for adding a question
+
 import React, { Component } from 'react';
 import {
     Button,

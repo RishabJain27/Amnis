@@ -1,7 +1,10 @@
+// Defines the express routes to do GET, POST, PUT, and DELETE requests
+// pertaining to lectures.
+
 const express = require('express');
 const router = express.Router();
 
-// Question Model
+// Lecture Model
 const Lecture = require('../../models/Lecture');
 
 // @route GET api/lectures

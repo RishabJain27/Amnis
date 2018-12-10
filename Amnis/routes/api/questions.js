@@ -1,3 +1,6 @@
+// Defines the express routes to do GET, POST, PUT, and DELETE requests
+// pertaining to questions.
+
 const express = require('express');
 const router = express.Router();
 
@@ -23,7 +26,7 @@ router.get('/findLecture/:id', (req, res) => {
 });
 
 // @route POST api/questions
-// @desc Post a question
+// @desc Add a new question
 // @access Public
 router.post('/', (req, res) => {
 	const newQuestion = new Question({
@@ -40,12 +43,6 @@ router.post('/', (req, res) => {
 // @desc Put/upvote a question
 // @access Public
 router.put('/upvote/:id', (req, res) => {
-	/*Question.findByIdAndUpdate(req.params.id,
-		{
-            $inc: { score: 1 },
-            $set: { upvotes: [req.body.googleID] }
-		}).then((question)=>res.json({question})) // then() used with promises
-        .catch(err => res.status(404).json({success:false}));*/
     Question.findById(req.params.id)
 		.then(question => {
             question.score = question.score + 1;

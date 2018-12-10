@@ -1,24 +1,26 @@
+// Defines the user schema to be stored in the database
+
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 const Schema = mongoose.Schema;
 
-// Create User Schema
+// Create a User Schema
 const UserSchema = new Schema({
     name: {
-        type: String,
+        type: String,   // Full name of the user, required
         required: true
     },
 	googleUserID: {
-		type: String,
+		type: String,   // GoogleID of the user, required and unique
 		unique: true,
 		required: true
 	},
 	isProfessor: {
-		type: Boolean,
+		type: Boolean,  // True when the user is a professor, false otherwise
 		default: false
 	},
 	dateJoined: {
-		type: Date,
+		type: Date,     // Date that the user joined
 		default: Date.now
 	}
 });

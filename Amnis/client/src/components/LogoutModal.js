@@ -1,12 +1,15 @@
+// Modal that pops up to indicate that the user has successfully logged out
+
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { logoutUser } from '../UserAuth';
 
 class LogoutModal extends Component {
     state = {
-        modal: true
+        modal: true // Boolean to keep track of modal visibility
     }
 
+    // Toggles the modal visibility state
     toggle = () => {
         this.setState({
             modal: !this.state.modal

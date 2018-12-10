@@ -1,11 +1,15 @@
+// Modal to appear whenever the user attempts to access a page
+// without being signed in.
+
 import React, { Component } from 'react';
 import { Modal, ModalHeader, Alert } from 'reactstrap';
 
 class LoginModal extends Component {
     state = {
-        modal: true
+        modal: true // Modal visibility boolean
     }
 
+    // Toggles the modal visibility
     toggle = () => {
         this.setState({
             modal: !this.state.modal

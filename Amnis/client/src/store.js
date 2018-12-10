@@ -1,3 +1,5 @@
+// Creates a global store to be used by most components in the project.
+// Utilizes Redux and middleware to do so.
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
@@ -6,6 +8,7 @@ const initialState = {};
 
 const middleware = [thunk];
 
+// Creates a store by combining all the reducers and utilizing middleware
 const store = createStore(
     rootReducer, 
     initialState, 

@@ -1,3 +1,6 @@
+// List of all actions to be used with the RootReducer.
+// Individual action explanations are done within the corresponding action files.
+
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTIONS';

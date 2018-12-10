@@ -2,6 +2,8 @@ import axios from 'axios';
 import { GET_LECTURES, ADD_LECTURE, CHECK_LECTURE, CHANGE_STREAM } from './types';
 import { serverURL, clientURL } from '../components/ServerRoutes';
 
+// Dispatches a GET request to the database to retrieve all lectures,
+// then updates the global store.
 export const getLectures = () => dispatch => {
     axios
         .get(`${serverURL}lectures`)
@@ -13,6 +15,8 @@ export const getLectures = () => dispatch => {
         );
 };
 
+// Dispatches a GET request to the database to retrieve a lecture by ID,
+// then updates the global store.
 export const checkLecture = (id) => dispatch => {
     axios
         .get(`${serverURL}/lectures/${id}`)
@@ -24,6 +28,8 @@ export const checkLecture = (id) => dispatch => {
         );
 };
 
+// Dispatches a PUT request to the database to change a lecture's stream status by ID,
+// then updates the global store.
 export const changeLectureStream = (id) => dispatch => {
     axios
         .put(`${serverURL}/lectures/toggleStream/${id}`)
@@ -35,6 +41,8 @@ export const changeLectureStream = (id) => dispatch => {
         );
 };
 
+// Dispatches a POST request to the database to add a new lecture,
+// then updates the global store.
 export const addLecture = (lecture, history) => dispatch => {
     axios
         .post(`${serverURL}/lectures`, lecture)

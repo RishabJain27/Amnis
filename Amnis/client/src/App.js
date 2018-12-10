@@ -1,4 +1,7 @@
+// Our old lecture component, serves as a framework for pages
+
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import AppNavbar from './components/AppNavbar';
 import QuestionList from './components/QuestionList';
@@ -7,7 +10,6 @@ import { Container } from 'reactstrap';
 import { GoogleLogin } from 'react-google-login';
 import { Button } from 'reactstrap';
 import YoutubeVideo from './components/YoutubeVideo';
-import axios from 'axios';
 
 
 // Redux related imports: 
@@ -22,7 +24,6 @@ class App extends Component {
     constructor(props) {
         super(props);
         document.body.style.backgroundColor = 'black';
-        //document.body.style.webkitTextFillColor = 'white';
         this.state = { 
             currentUser: localStorage.getItem('currentUser'), 
             isProfessor: !!localStorage.getItem('isProfessor')
