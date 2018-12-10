@@ -10,9 +10,11 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
+  Badge
 } from "reactstrap";
 import AmnisLogo from "../images/LogoBorder.png";
+import { isUserLoggedIn, getUser } from '../UserAuth';
 
 class AppNavbar extends Component {
 
@@ -56,6 +58,13 @@ class AppNavbar extends Component {
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
+                                {isUserLoggedIn() && this.state.buttonVisible && 
+                                    (<NavItem>
+                                        <Badge color="secondary">
+                                            <h4 style={{display:'inline'}}>Welcome, {getUser()}!</h4>&nbsp;
+                                        </Badge>
+                                    </NavItem>)
+                                }
                                 <NavItem>
                                     {viewLectures}
                                 </NavItem>
