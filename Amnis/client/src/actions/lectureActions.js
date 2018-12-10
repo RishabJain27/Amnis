@@ -45,7 +45,7 @@ export const changeLectureStream = (id) => dispatch => {
 // then updates the global store.
 export const addLecture = (lecture, history) => dispatch => {
     axios
-        .post(`${serverURL}/lectures`, lecture)
+        .post(`${serverURL}lectures`, lecture)
         .then(res => {
              dispatch({
                 type: ADD_LECTURE,
