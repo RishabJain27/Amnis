@@ -26,6 +26,7 @@ axios.get('http://localhost:5000/api/lectures')
  const languageCode =  'en-US';
 
 var status = new Array();
+//Initializes the array to five empty tags
 status.push({name: '', val: 0});
 status.push({name: '', val: 0});
 status.push({name: '', val: 0});
@@ -35,8 +36,6 @@ status.push({name: '', val: 0});
 status.sort(function(a,b) {
     return b.val - a.val;
 });
-
-//console.log(status);
 
 const request = {
   config: {
@@ -52,12 +51,10 @@ const recognizeStream = client
   .streamingRecognize(request)
   .on('error', console.error)
   .on('data', data =>
-    //data.results[0] && data.results[0].alternatives[0];
     {
       // Splitting the streamed input
       var str =  `${data.results[0].alternatives[0].transcript}\n`;
       var res = str.toLowerCase();
-      //var temp = NLP(res);
       var arr = new Array();
 
     const document = {
@@ -73,16 +70,13 @@ const recognizeStream = client
 
     console.log('Entities:');
     entities.forEach(entity => {
-      //console.log(entity.name);
-      arr.push(entity.name);
-      //console.log("Array 1 is " + arr);
-      //console.log("Words are " + words);
-      //console.log(` - Type: ${entity.type}, Salience: ${entity.salience}`);
+      var str = entity.name;
+      var lowerCase = str.toLowerCase();
+      arr.push(lowerCase.charAt(0).toUpperCase() + lowerCase.slice(1));
       if (entity.metadata && entity.metadata.wikipedia_url) {
         //console.log(` - Wikipedia URL: ${entity.metadata.wikipedia_url}$`);
       }
       for (var i = 0; i < arr.length; i++) {
-        //console.log("Word " + i +" is:" + arr[i]);
         if(wordMap.has(arr[i]) && arr[i] != ''){    //if HashMap has the word
           var tempCount = wordMap.get(arr[i]);
           wordMap.set(arr[i], tempCount + 1);
@@ -91,7 +85,6 @@ const recognizeStream = client
             for(var j = 0; j < status.length; j++){
               if(status[j].name === arr[j]){
                 status[j].val = tempCount+1;
-                //break;
               }
             }
           } else if(status[status.length - 1].val < tempCount + 1 && !a){
@@ -114,7 +107,6 @@ const recognizeStream = client
       }
       console.log("Array is:" + '\n');
       console.log(status); //THIS ARRAY IS WHAT NEEDS TO GO INTO THE DB
-      //console.log(wordMap.entries());
       postToDb(status);
     });
   })
@@ -131,7 +123,6 @@ record
   .start({
     sampleRateHertz: sampleRateHertz,
     threshold: 0,
-    // Other options, see https://www.npmjs.com/package/node-record-lpcm16#options
     verbose: false,
     recordProgram: 'rec', // Try also "arecord" or "sox"
     silence: '10.0',
@@ -140,7 +131,6 @@ record
   .pipe(recognizeStream);
 
 function postToDb(tags){
-    //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
     var tagsJSON = {tags:tags};
     axios.put(`http://localhost:5000/api/lectures/tags/${lectureID}`, tagsJSON)
       .then(function (response) {
